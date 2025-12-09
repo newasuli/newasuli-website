@@ -1,9 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
-  return (
-    <div>
-      <h1 className="font-poppins font-bold bg-dark text-white">
-        Suraj Bhadwa
-      </h1>
-    </div>
-  );
+  return <section className="min-h-screen bg-red-300"></section>;
 }
