@@ -54,8 +54,8 @@ const Footer = () => {
 
               <section>
           <p className='font-bold py-4'>Follow Us</p>
-          <ul className='text-sm flex'>
-            <li className='py-1 px-1 text-2xl'><Link href="https://www.facebook.com/harisiddhinewasuli" target='_blank'><FaFacebookSquare /></Link></li>
+          <ul className='text-sm flex '>
+            <li className='py-1 px-1 text-2xl '><Link href="https://www.facebook.com/harisiddhinewasuli" target='_blank'><FaFacebookSquare /></Link></li>
             <li className='py-1 px-1 text-2xl'><Link href="https://www.instagram.com/harisiddhi.newa.suli/" target='_blank'><FaInstagram/></Link></li>
           </ul>
         </section>
