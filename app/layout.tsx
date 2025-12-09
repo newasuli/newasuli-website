@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Newsreader } from "next/font/google";
 import Footer from '../components/Footer';
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -34,10 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${poppins.variable} ${newsreader.variable} antialiased`}
+        className={`${poppins.variable} ${newsreader.variable} min-w-full overflow-x-hidden antialiased`}
       >
+        <Navbar />
         <main>{children}</main>
         
         <Footer/>
