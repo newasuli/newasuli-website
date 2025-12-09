@@ -22,3 +22,23 @@
     --foreground: #ededed;
   }
 }
+
+.hover-effect-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-effect-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--red);
+  transition: all 0.3s ease;
+}
+
+.hover-effect-underline:hover::after {
+  width: 100%;
+}

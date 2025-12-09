@@ -21,23 +21,23 @@ const Footer = () => {
         <section>
           <p className='font-bold py-4'>Quick Links</p>
           <ul className='text-sm'>
-            <li className='py-1'> <Link href="/">Home </Link></li>
-            <li className='py-1'> <Link href="/about">About </Link></li>
+            <li className='py-1'> <Link href="/" className='hover-effect-underline'>Home </Link></li>
+            <li className='py-1'> <Link href="/about" className='hover-effect-underline'>About </Link></li>
 
              
             
-            <li className='py-1'><Link href="/menu">Food & Drinks</Link></li>
-            <li className='py-1'><Link href="/gallery">Gallery</Link></li>
+            <li className='py-1'><Link href="/menu" className='hover-effect-underline'>Food & Drinks</Link></li>
+            <li className='py-1'><Link href="/gallery" className='hover-effect-underline'>Gallery</Link></li>
           </ul>
         </section>
 
 
         <section>
-          <p className='font-bold py-4'>Contact Details</p>
+          <p className='font-bold py-4 text-nowrap'>Contact Details</p>
           <ul className='text-sm'>
             <li className='py-1'>+982-8711989</li>
             <li className='py-1'>+9779808100000</li>        
-            <li className='py-1'> <Link href="mailto:info@newasuli.com" target='_blank'>info@newasuli.com</Link></li>
+            <li className='py-1'> <Link href="mailto:info@newasuli.com" className='hover-effect-underline' target='_blank'>info@newasuli.com</Link></li>
             <li className='py-1'>Godawari Road, Lalitpur, Nepal</li>
           </ul>
         </section>
