@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Newsreader } from "next/font/google";
+import Footer from '../components/Footer';
 import "./globals.css";
 
 const poppins = Poppins({
@@ -38,6 +39,8 @@ export default function RootLayout({
         className={`${poppins.variable} ${newsreader.variable} antialiased`}
       >
         <main>{children}</main>
+        
+        <Footer/>
       </body>
     </html>
   );
