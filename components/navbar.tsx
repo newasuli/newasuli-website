@@ -1,9 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import path from "path";
+import React, { useEffect } from "react";
+import { CgMenu, CgClose } from "react-icons/cg";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -11,10 +12,18 @@ const Navbar = () => {
   const toggleMobileNav = () => {
     setShowMobileNav(!showMobileNav);
   };
+  useEffect(() => {
+    if (showMobileNav) {
+      document.body.style.overflow = "hidden";
+      console.log(document.body.style.overflow);
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showMobileNav]);
   return (
-    <header className="w-full flex justify-between items-center px-8 py-4 absolute">
+    <header className="w-full flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 absolute top-0 left-0 right-0">
       <Link href="/">
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
+        <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
           <Image
             src="/images/newasulilogo.png"
             alt="Newasuli Logo"
@@ -24,25 +33,43 @@ const Navbar = () => {
         </div>
       </Link>
       <div
-        className="size-8 bg-gray-600 border border-white md:hidden"
+        className="lg:hidden flex flex-col gap-2 w-12 z-50 transition-all duration-300 ease-in-out"
         onClick={toggleMobileNav}
-      ></div>
-      <nav
-        className={`flex flex-col items-center gap-8 py-16 fixed inset-0 w-full h-screen top-0 left-0 bg-dark md:flex-row ${
-          showMobileNav ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 md:static md:h-auto md:w-auto md:bg-transparent md:translate-x-0 md:py-0`}
       >
         <div
-          className="size-8 bg-red-300 absolute top-4 right-4 md:hidden"
-          onClick={toggleMobileNav}
+          className={`w-full h-0.5 bg-gray-500 rounded-lg transition-all ${
+            showMobileNav && "translate-x-0.5 rotate-25 origin-left"
+          }`}
         ></div>
-        <ul className="flex flex-col items-center md:flex-row gap-8">
+        <div
+          className={`w-full h-0.5 bg-gray-500 rounded-lg transition-all delay-100 ${
+            showMobileNav && "scale-x-0 origin-center"
+          }`}
+        ></div>
+        <div
+          className={`w-full h-0.5 bg-gray-500 rounded-lg transition-all ${
+            showMobileNav && "translate-x-0.5 -rotate-25 origin-left"
+          }`}
+        ></div>
+      </div>
+      <nav
+        className={`flex flex-col gap-8 px-8 py-24 fixed top-0 right-0 bottom-0 left-0 w-full h-screen z-40 bg-white md:right-0 md:left-auto md:w-1/2 lg:flex-row ${
+          showMobileNav ? "translate-x-0" : "translate-x-full"
+        } transition-all duration-300 delay-100 lg:px-0 lg:scale-x-100 lg:static lg:h-auto lg:w-auto lg:bg-transparent lg:translate-x-0 lg:py-0`}
+      >
+        <ul
+          role="list"
+          className="flex flex-col lg:flex-row gap-4 list-none lg:gap-8"
+        >
           <li>
             <Link
               href="/"
-              className={`font-poppins font-medium ${
-                pathname === "/" ? "text-white" : "text-gray-500"
-              }`}
+              className={`font-poppins font-medium text-xl lg:text-base text-gray-500 ${
+                pathname === "/" ? "lg:text-white" : ""
+              } hover-effect-underline`}
+              onNavigate={(e) => {
+                setShowMobileNav(false);
+              }}
             >
               Home
             </Link>
@@ -50,9 +77,12 @@ const Navbar = () => {
           <li>
             <Link
               href="/about"
-              className={`font-poppins font-medium ${
-                pathname === "/about" ? "text-white" : "text-gray-500"
-              }`}
+              className={`font-poppins font-medium text-xl lg:text-base text-gray-500 ${
+                pathname === "/about" ? "lg:text-white" : ""
+              } hover-effect-underline`}
+              onNavigate={(e) => {
+                setShowMobileNav(false);
+              }}
             >
               About
             </Link>
@@ -60,9 +90,12 @@ const Navbar = () => {
           <li>
             <Link
               href="/menu"
-              className={`font-poppins font-medium ${
-                pathname === "/menu" ? "text-white" : "text-gray-500"
-              }`}
+              className={`font-poppins font-medium text-xl lg:text-base text-gray-500 ${
+                pathname === "/menu" ? "lg:text-white" : ""
+              } hover-effect-underline`}
+              onNavigate={(e) => {
+                setShowMobileNav(false);
+              }}
             >
               Food & Drinks
             </Link>
@@ -70,18 +103,26 @@ const Navbar = () => {
           <li>
             <Link
               href="/gallery"
-              className={`font-poppins font-medium ${
-                pathname === "/gallery" ? "text-white" : "text-gray-500"
-              }`}
+              className={`font-poppins font-medium text-xl lg:text-base text-gray-500 ${
+                pathname === "/gallery" ? "lg:text-white" : ""
+              } hover-effect-underline`}
+              onNavigate={(e) => {
+                setShowMobileNav(false);
+              }}
             >
               Gallery
             </Link>
           </li>
         </ul>
-        <button className="px-4 py-2 bg-dark text-white rounded-lg cursor-pointer">
+        <button className="px-6 py-2 bg-dark text-white font-poppins font-medium text-xl lg:text-base lg:font-normal rounded-lg cursor-pointer">
           Contact Us
         </button>
       </nav>
+      <div
+        className={`w-screen h-screen absolute inset-0 bg-black/40 transition-all duration-300 ease-in-out ${
+          showMobileNav ? "visible" : "invisible"
+        } lg:hidden z-30`}
+      ></div>
     </header>
   );
 };
