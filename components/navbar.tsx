@@ -16,7 +16,7 @@ const Navbar = () => {
       <Link href="/">
         <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
           <Image
-            src="/images/newasulilogo.png"
+            src="/images/logo.png"
             alt="Newasuli Logo"
             fill
             className="object-contain"
