@@ -35,7 +35,7 @@
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: var(--red);
+  background-color:white;
   transition: all 0.3s ease;
 }
 
