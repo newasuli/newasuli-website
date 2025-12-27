@@ -3,50 +3,48 @@ import Image from "next/image";
 import about from "@/public/images/image1.jpg";
 import food from "@/public/images/image2.jpg";
 import { gsap } from "gsap";
+import { useLayoutEffect, useRef } from "react";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    // Register the ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
+    const containerRef = useRef(null);
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // First timeline for heroSection1
-    const tl1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#heroSection1",
-        start: "top 80%",
-        end: "bottom -5%",
-        toggleActions: "play reverse play reverse",
-        // play: onEnter | reverse: onLeave | play: onEnterBack | reverse: onLeaveBack
-      },
-    });
+        const ctx = gsap.context(() => {
+            // Section 1
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#heroSection1",
+                    start: "top 80%",
+                    toggleActions: "play reverse play reverse",
+                },
+            })
+                .from("#green", { x: -300, opacity: 0, duration: 0.6 })
+                .from("#blue", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
 
-    tl1
-      .from("#green", { duration: 0.6, x: -500, opacity: 0 })
-      .from("#blue", { duration: 0.6, x: 500, opacity: 0 }, "-=0.5");
+            // Section 2
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#heroSection2",
+                    start: "top 80%",
+                    toggleActions: "play reverse play reverse",
+                },
+            })
+                .from("#red", { x: -300, opacity: 0, duration: 0.6 })
+                .from("#yellow", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
+        }, containerRef);
 
-    // Second timeline for heroSection2
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#heroSection2",
-        start: "top 100%",
-        end: "bottom -5%",
-        toggleActions: "play reverse play reverse",
-      },
-    });
+        // IMPORTANT
+        ScrollTrigger.refresh();
 
-    tl2
-      .from("#red", { duration: 0.6, x: -500, opacity: 0 })
-      .from("#yellow", { duration: 0.6, x: 500, opacity: 0 }, "-=0.5");
+        return () => ctx.revert();
+    }, []);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
-  return (
+    return (
     <>
       <div className="h-full lg:h-screen relative">
         <section className="w-full h-full fixed inset-0 -z-10">
@@ -63,7 +61,9 @@ export default function Home() {
           </h2>
         </section>
       </div>
-      <section className="w-full min-h-screen bg-white px-8 py-16 overflow-hidden">
+      <section
+          ref={containerRef}
+          className="w-full min-h-screen bg-white px-8 py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
