@@ -9,39 +9,41 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 
 export default function Home() {
-    const containerRef = useRef(null);
-    useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+     const containerRef = useRef(null);
 
-        const ctx = gsap.context(() => {
-            // Section 1
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#heroSection1",
-                    start: "top 80%",
-                    toggleActions: "play reverse play reverse",
-                },
-            })
-                .from("#green", { x: -300, opacity: 0, duration: 0.6 })
-                .from("#blue", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
+useLayoutEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
+const ctx=gsap.context(()=>{
 
-            // Section 2
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#heroSection2",
-                    start: "top 80%",
-                    toggleActions: "play reverse play reverse",
-                },
-            })
-                .from("#red", { x: -300, opacity: 0, duration: 0.6 })
-                .from("#yellow", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
-        }, containerRef);
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: "#heroSection1",
+            start: "top 80%",
+            end: "bottom -5%",
+            toggleActions: "play reverse play reverse"
+        },
+    })
+        .from("#green", { x: -300, opacity: 0, duration: 0.6 })
+        .from("#blue", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
 
-        // IMPORTANT
-        ScrollTrigger.refresh();
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: "#heroSection2",
+            start: "top 100%",
+            end: "bottom -5%",
+            toggleActions: "play reverse play reverse"
+      },
+      
+      
+    })
+        .from('#red', { duration: 0.6, x: -500, opacity: 0 })
+        .from('#yellow', { duration: 0.6, x: 500, opacity: 0 }, "-=0.5");
+}, containerRef);
+    ScrollTrigger.refresh();
 
-        return () => ctx.revert();
-    }, []);
+
+    return () => ctx.revert();
+}, []);
 
 
     return (
