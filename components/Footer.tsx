@@ -35,8 +35,7 @@ const Footer = () => {
         <section>
           <p className='font-bold py-4 text-nowrap'>Contact Details</p>
           <ul className='text-sm'>
-            <li className='py-1'>+977982-8711989</li>
-            <li className='py-1'>+9779808100000</li>        
+           <li className='py-1'><Link  className='hover-effect-underline' href="tel:982-8711989">+977 9828711989</Link></li>
             <li className='py-1'> <Link href="mailto:info@newasuli.com" className='hover-effect-underline' target='_blank'>info@newasuli.com</Link></li>
             <li className='py-1'>Godawari Road, Lalitpur, Nepal</li>
           </ul>
