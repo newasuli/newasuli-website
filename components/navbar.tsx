@@ -38,7 +38,7 @@ const Navbar = () => {
       >
         <div
           className={`w-full h-0.5 bg-gray-500 rounded-lg transition-all ${
-            showMobileNav && "translate-0.5 rotate-34 origin-left"
+            showMobileNav && "rotate-40 origin-left"
           }`}
         ></div>
         <div
@@ -48,12 +48,12 @@ const Navbar = () => {
         ></div>
         <div
           className={`w-full h-0.5 bg-gray-500 rounded-lg transition-all ${
-            showMobileNav && "translate-x-0.5 -rotate-34 origin-left"
+            showMobileNav && "-rotate-40 origin-left"
           }`}
         ></div>
       </div>
       <nav
-        className={`flex flex-col items-center gap-8 px-8 py-20 fixed top-0 right-0 bottom-0 w-1/2 h-screen z-40 bg-white md:right-0 md:left-auto md:w-1/2 lg:flex-row ${
+        className={`flex flex-col items-center gap-8 px-8 py-20 fixed top-0 right-0 bottom-0 w-3/5 h-screen z-40 bg-white md:right-0 md:left-auto md:w-1/2 lg:flex-row ${
           showMobileNav ? "translate-x-0" : "translate-x-full"
         } transition-all duration-300 delay-100 lg:px-0 lg:scale-x-100 lg:static lg:h-auto lg:w-auto lg:bg-transparent lg:translate-x-0 lg:py-0`}
       >

@@ -2,20 +2,66 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      <div className="h-screen">
-        <section className="h-1/2 lg:h-screen fixed inset-0 -z-10">
-          <Image src={"/images/home_bg.png"} alt="Newa Suli Restaurant" fill />
+    <>
+      <div className="h-full lg:h-screen relative">
+        <section className="w-full h-full fixed inset-0 -z-10">
+          <Image
+            src={"/images/home_bg.png"}
+            alt="Newa Suli Restaurant"
+            fill
+            style={{ objectFit: "cover", objectPosition: "top" }}
+          />
         </section>
-        <section className="w-full h-1/2 lg:h-screen bg-black/10 flex items-center justify-center">
-          <h2 className="text-4xl lg:text-7xl text-gray-50/80 text-center font-newsreader font-bold">
+        <section className="w-full h-full bg-black/20 flex items-center justify-center relative">
+          <h2 className="text-4xl lg:text-7xl text-gray-50/80 text-center font-newsreader font-bold sticky top-1/2 transform -translate-y-1/2">
             Welcome to Newa Suli
           </h2>
         </section>
       </div>
       <section className="w-full h-screen bg-white"></section>
-      <section className="w-full h-screen bg-dark border-y-6 border-red">
-        <div className="bg-gray-400"></div>
+      <section className="w-full bg-dark border-y-6 border-red py-16 flex flex-col items-center gap-2">
+        <section className="w-full grid grid-cols-2 grid-rows-4 lg:grid-cols-4 lg:grid-rows-2 gap-2 h-[600]">
+          <div className="bg-gray-400 relative col-span-2 row-span-2 overflow-hidden cursor-pointer">
+            <Image
+              src={"/images/newasuli_img_1.jpg"}
+              alt=""
+              fill
+              className="object-cover object-center hover:scale-105 transition-transform duration-2000 ease-out"
+            />
+          </div>
+          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
+            <Image
+              src={"/images/newasuli_img_2.jpg"}
+              alt=""
+              fill
+              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
+            />
+          </div>
+          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
+            <Image
+              src={"/images/newasuli_img_3.jpg"}
+              alt=""
+              fill
+              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
+            />
+          </div>
+          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
+            <Image
+              src={"/images/newasuli_img_4.jpg"}
+              alt=""
+              fill
+              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
+            />
+          </div>
+          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
+            <Image
+              src={"/images/newasuli_img_7.jpg"}
+              alt=""
+              fill
+              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
+            />
+          </div>
+        </section>
       </section>
       <section className="w-full h-screen bg-white"></section>
       <div>
@@ -26,6 +72,6 @@ export default function Home() {
           className="w-full h-[450px] border-0"
         ></iframe>
       </div>
-    </div>
+    </>
   );
 }
