@@ -7,14 +7,17 @@ import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark font-poppins text-white py-8 lg:px-28 px-12 border-y-6 border-red">
-      <div className="flex items-center ">
-        <Image src={Logo} className=" w-12" alt="logo" />
-        <Image src={TextLogo} className="w-24 mx-8 " alt="logo" />
-      </div>
-
+    <footer className="bg-dark font-poppins text-white pt-12 pb-8 lg:px-28 px-12">
       <div className="grid md:grid-cols-4  grid-cols-2 gap-4 pb-14">
-        <section>
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <Image src={Logo} className="w-24" alt="logo" />
+          <Image
+            src={TextLogo}
+            className="w-24 mx-8 hidden sm:block"
+            alt="logo"
+          />
+        </div>
+        {/* <section>
           <p className="font-bold py-4">Quick Links</p>
           <ul className="text-sm">
             <li className="py-1">
@@ -41,12 +44,12 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </section>
+        </section> */}
 
         <section>
-          <p className="font-bold py-4 text-nowrap">Contacts</p>
+          <p className="font-medium mb-2 text-nowrap">Contacts</p>
           <ul className="text-sm">
-            <li className="py-1">
+            <li className="">
               <Link className="hover-effect-underline" href="tel:982-8711989">
                 +977 9828711989
               </Link>
@@ -66,22 +69,21 @@ const Footer = () => {
         </section>
 
         <section>
-          <p className="font-bold py-4">Hours</p>
+          <p className="font-medium mb-2">Opening Hours</p>
           <ul className="text-sm">
-            <li className="py-1">Sun - Fri : 7am to 10pm</li>
-            <li className="py-1">Fri - Sat : 2pm to 8pm</li>
+            <li className="">Sun - Sat : 7am to 10pm</li>
           </ul>
         </section>
 
         <section>
-          <p className="font-bold py-4">Follow Us</p>
+          <p className="font-medium mb-2">Follow Us</p>
           <ul className="text-sm flex ">
             <li>
               <Link
                 href="https://www.facebook.com/harisiddhinewasuli"
                 target="_blank"
               >
-                <FaFacebookSquare size={32} />
+                <FaFacebookSquare size={60} />
               </Link>
             </li>
             <li className="ml-3">
@@ -89,7 +91,7 @@ const Footer = () => {
                 href="https://www.instagram.com/harisiddhi.newa.suli/"
                 target="_blank"
               >
-                <FaInstagram size={32} />
+                <FaInstagram size={60} />
               </Link>
             </li>
           </ul>

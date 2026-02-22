@@ -21,7 +21,7 @@ const Navbar = () => {
     }
   }, [showMobileNav]);
   return (
-    <header className="w-full flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 absolute top-0 left-0 right-0">
+    <header className="w-full flex justify-between items-center px-4 md:px-12 lg:px-16 py-2 absolute top-0 left-0 right-0">
       <Link href="/">
         <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
           <Image

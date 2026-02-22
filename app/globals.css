@@ -5,6 +5,7 @@
   --foreground: #171717;
   --dark: #212123;
   --red: #c1121f;
+  --cream: #ECB9A4;
 }
 
 @theme inline {
@@ -12,6 +13,7 @@
   --color-foreground: var(--foreground);
   --color-dark: var(--dark);
   --color-red: var(--red);
+  --color-cream: var(--cream);
   --font-poppins: var(--font-poppins);
   --font-newsreader: var(--font-newsreader);
 }
@@ -35,7 +37,7 @@
   bottom: -2;
   height: 2px;
   width: 0;
-  background-color:white;
+  background-color:var(--dark);
   transition: all 0.3s ease;
 }
 
