@@ -234,7 +234,7 @@ const entrees = [
   );
 
   return (
-    <div className="min-h-screen  relative overflow-hidden font-newsreader italic">
+    <div className="min-h-screen    relative overflow-hidden font-newsreader italic">
       <div
         className="absolute inset-0 opacity-80 pointer-events-none"
         style={{
@@ -244,78 +244,10 @@ const entrees = [
           backgroundPosition: "center",
         }}
       />
-      <header className="relative py-12 px-4 sm:px-6 lg:px-8  from-[#f5f0e6] to-[#ebe4d6]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-8">
-            <div className="flex-1 text-center lg:text-left">
-              <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-black text-red-900 uppercase tracking-tight mb-2"
-                style={{
-                  fontFamily: "serif",
-                  textShadow: "2px 2px 4px rgba(0,0,0,0.1)",
-                }}
-              >
-                Harisiddhi
-              </h1>
-              <h2
-                className="text-3xl md:text-4xl font-bold text-amber-800 uppercase tracking-widest mb-6"
-                style={{ fontFamily: "serif" }}
-              >
-                Newa Suli
-              </h2>
-
-              <NewariPattern className="w-48 h-8 text-amber-700 mx-auto lg:mx-0 mb-6" />
-
-              <div className="space-y-2 text-sm text-amber-900/80 max-w-lg  flex flex-col items-start">
-                <p className="flex items-center gap-2 justify-center lg:justify-start">
-                  <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  We source the highest-quality ingredients
-                </p>
-
-                <p className="flex items-center gap-2 justify-center lg:justify-start">
-                  <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  We make our recipes from scratch every day
-                </p>
-                <p className="flex items-center gap-2 justify-center lg:justify-start">
-                  <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  We craft food that makes you feel nourished
-                </p>
-              </div>
-            </div>
-
-            {/* How to Order - Styled like traditional card */}
-            <div className="lg:w-80 w-full bg-white/60 backdrop-blur-sm p-6 rounded-lg border-2 border-amber-300 shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-red-800 text-amber-100 px-4 py-1 text-xs font-bold uppercase tracking-wider rounded">
-                How to Order
-              </div>
-              <ol className="space-y-4 mt-2">
-                {[
-                  "Choose Your Set or Items",
-                  "Choose Your Protein",
-                  "Add Sides & Extras",
-                  "Make It Yours",
-                  "Make It a Meal",
-                ].map((step, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <span
-                      className="flex-shrink-0 w-8 h-8 bg-amber-100 border-2 border-amber-700 text-amber-900 rounded-full flex items-center justify-center text-sm font-bold"
-                      style={{ fontFamily: "serif" }}
-                    >
-                      {idx + 1}
-                    </span>
-                    <span className="text-sm font-semibold uppercase text-amber-900 tracking-wide">
-                      {step}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </header>
+ 
 
   
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-900 via-red-800 to-red-900 relative overflow-hidden">
+      <section className="py-30 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-900 via-red-800 to-red-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10"></div>
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-8">
