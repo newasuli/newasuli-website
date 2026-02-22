@@ -21,9 +21,9 @@ const Navbar = () => {
     }
   }, [showMobileNav]);
   return (
-    <header className="w-full flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 absolute top-0 left-0 right-0">
+    <header className="w-full flex justify-between items-center px-4 md:px-12 lg:px-16 py-2 absolute top-0 left-0 right-0">
       <Link href="/">
-        <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
+        <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
           <Image
             src="/images/logo.png"
             alt="Newasuli Logo"
@@ -59,12 +59,12 @@ const Navbar = () => {
       >
         <ul
           role="list"
-          className="flex flex-col lg:flex-row gap-4 list-none lg:gap-8"
+          className="flex flex-col lg:flex-row gap-4 list-none lg:gap-16"
         >
           <li>
             <Link
               href="/"
-              className={`font-poppins font-medium text-lg lg:text-base text-gray-500 ${
+              className={`font-poppins font-medium text-lg lg:text-xl text-gray-500 ${
                 pathname === "/" ? "lg:text-white" : ""
               } hover-effect-underline`}
               onNavigate={(e) => {
@@ -77,7 +77,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/about"
-              className={`font-poppins font-medium text-lg lg:text-base text-gray-500 ${
+              className={`font-poppins font-medium text-lg lg:text-xl text-gray-500 ${
                 pathname === "/about" ? "lg:text-white" : ""
               } hover-effect-underline`}
               onNavigate={(e) => {
@@ -90,7 +90,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/menu"
-              className={`font-poppins font-medium text-lg lg:text-base text-gray-500 ${
+              className={`font-poppins font-medium text-lg lg:text-xl text-gray-500 ${
                 pathname === "/menu" ? "lg:text-white" : ""
               } hover-effect-underline`}
               onNavigate={(e) => {
@@ -103,7 +103,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/gallery"
-              className={`font-poppins font-medium text-lg lg:text-base text-gray-500 ${
+              className={`font-poppins font-medium text-lg lg:text-xl text-gray-500 ${
                 pathname === "/gallery" ? "lg:text-white" : ""
               } hover-effect-underline`}
               onNavigate={(e) => {
@@ -114,9 +114,6 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <button className="px-6 py-2 bg-dark text-white font-poppins font-medium text-base lg:font-normal rounded-lg cursor-pointer">
-          Contact Us
-        </button>
       </nav>
       <div
         className={`w-screen h-screen absolute inset-0 bg-black/60 transition-all duration-300 ease-in-out ${
