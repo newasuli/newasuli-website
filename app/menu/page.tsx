@@ -3,29 +3,29 @@ import Image from "next/image";
 import { table } from "console";
 
 function Menu() {
-const entrees = [
-  {
-    name: "Harisiddhi Newa Suli Signature Set",
-    description:
-      "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
-    price: [1500, 2400],
-    tag: "SIGNATURE",
-  },
-  {
-    name: "Newa Suli Grand Set",
-    description:
-      "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
-    price: 3500,
-    tag: "GRAND",
-  },
-  {
-    name: "Newa Suli Veg Set",
-    description:
-      "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
-    price: 750,
-    tag: "VEGETARIAN",
-  },
-];
+  const entrees = [
+    {
+      name: "Harisiddhi Newa Suli Signature Set",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
+      price: [1500, 2400],
+      tag: "SIGNATURE",
+    },
+    {
+      name: "Newa Suli Grand Set",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
+      price: 3500,
+      tag: "GRAND",
+    },
+    {
+      name: "Newa Suli Veg Set",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
+      price: 750,
+      tag: "VEGETARIAN",
+    },
+  ];
   const individualItems = [
     { name: "Baji | Chiura | Beaten Rice", price: 100, tag: "VEGETARIAN" },
     { name: "Mushya | Bhatmas | Fried Soyabean", price: 80, tag: "VEGETARIAN" },
@@ -53,8 +53,8 @@ const entrees = [
     { name: "Swon | Fokso | Mutton Lungs", price: 190 },
     { name: "Choon Laa | Keema | Fried Minced Buff", price: 260 },
     { name: "Anda Chhoon Laa | Fried Egg with Minced Buff", price: 300 },
-    { name: "Seitan Sukuti | Seasoned Seitan", price: 300, tag: "VEGETARIAN"},
-    { name: "Sadeko Chyau | Seasoned Mushroom", price: 220 ,tag:"VEGETARIAN"},
+    { name: "Seitan Sukuti | Seasoned Seitan", price: 300, tag: "VEGETARIAN" },
+    { name: "Sadeko Chyau | Seasoned Mushroom", price: 220, tag: "VEGETARIAN" },
     { name: "Kheyn | Egg - Boiled/Omlette/SSU/Bhurji", price: 120 },
     { name: "Chwo Hee | Rakti | Steamed WBC", price: 120 },
     { name: "Jhuku | Newari Sausage", price: 190 },
@@ -63,13 +63,13 @@ const entrees = [
   const riceMeals = [
     { name: "Jaa Khana (Buff/Chicken/Fish)", price: 490 },
     { name: "Mutton Khana", price: 590 },
-    { name: "Veg Khana", price: 290,tag:"VEGETARIAN" },
-    { name: "Plain Daal Bhaat", price: 190,tag:"VEGETARIAN" },
+    { name: "Veg Khana", price: 290, tag: "VEGETARIAN" },
+    { name: "Plain Daal Bhaat", price: 190, tag: "VEGETARIAN" },
   ];
 
   const baraItems = [
-    { name: "Saada | Plain", price: 100,tag:"VEGETARIAN" },
-    { name: "Veggie", price: 120 ,tag:"VEGETARIAN"},
+    { name: "Saada | Plain", price: 100, tag: "VEGETARIAN" },
+    { name: "Veggie", price: 120, tag: "VEGETARIAN" },
     { name: "Anda (Egg)", price: 140 },
     { name: "Keema (Minced Meat)", price: 190 },
     { name: "Mishran (Mixed)", price: 240 },
@@ -84,8 +84,8 @@ const entrees = [
   const soups = [
     { name: "Ka: Kwaa | Newari Soup", price: 180 },
     { name: "Kweyn Kwaa | Bone Soup", price: 180 },
-    { name: "Mii Kwaa | Methi Soup", price: 180 , tag:"VEGETARIAN"},
-    { name: "Paamu Kwaa | Lapsi Soup", price: 180, tag:"VEGETARIAN" },
+    { name: "Mii Kwaa | Methi Soup", price: 180, tag: "VEGETARIAN" },
+    { name: "Paamu Kwaa | Lapsi Soup", price: 180, tag: "VEGETARIAN" },
   ];
 
   const chickenItems = [
@@ -97,7 +97,7 @@ const entrees = [
   ];
 
   const chatamariItems = [
-    { name: "Saada | Plain", price: 80,tag:"VEGETARIAN" },
+    { name: "Saada | Plain", price: 80, tag: "VEGETARIAN" },
     { name: "Anda | Egg", price: 120 },
     { name: "Anda Aalu | Egg Potato", price: 160 },
     { name: "Keema | Minced Meat", price: 190 },
@@ -105,8 +105,8 @@ const entrees = [
   ];
 
   const salads = [
-    { name: "Green Salad", price: 220 ,tag:"VEGETARIAN"},
-    { name: "Fruit Salad", price: 380 ,tag:"Contains Fruit"},
+    { name: "Green Salad", price: 220, tag: "VEGETARIAN" },
+    { name: "Fruit Salad", price: 380, tag: "Contains Fruit" },
   ];
 
   const drinks = [
@@ -150,7 +150,7 @@ const entrees = [
         >
           {title}
         </h2>
-       <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-700 to-amber-700"></div>
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-700 to-amber-700"></div>
       </div>
       {children}
     </div>
@@ -182,8 +182,7 @@ const entrees = [
                 className={`text-xs px-2 py-1 rounded-sm uppercase font-bold tracking-wider ${
                   tag === "VEGETARIAN"
                     ? "bg-green-700 text-green-50"
-                  : "bg-red-700 text-amber-50"
-                  
+                    : "bg-red-700 text-amber-50"
                 }`}
               >
                 {tag}
@@ -244,9 +243,7 @@ const entrees = [
           backgroundPosition: "center",
         }}
       />
- 
 
-  
       <section className="py-30 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-900 via-red-800 to-red-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10"></div>
         <div className="max-w-6xl mx-auto relative z-10">
@@ -284,13 +281,10 @@ const entrees = [
         </div>
       </section>
 
-
       <main className="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative">
-
         <div className="absolute top-0 left-0 w-64 h-64 bg-red-900/5 rounded-full blur-3xl -z-10"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-700/5 rounded-full blur-3xl -z-10"></div>
 
-       
         <MenuSection title="Newa Suli Sets">
           <div className="grid md:grid-cols-2 gap-6">
             {entrees.map((item, idx) => (
@@ -299,9 +293,7 @@ const entrees = [
           </div>
         </MenuSection>
 
-        
         <div className="grid lg:grid-cols-2 gap-8">
-    
           <MenuSection title="Individual Items">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200">
               {individualItems.map((item, idx) => (
@@ -310,7 +302,6 @@ const entrees = [
             </div>
           </MenuSection>
 
-        
           <MenuSection title="Twaakka Sitan ">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200">
               {twaakkaItems.map((item, idx) => (
@@ -320,7 +311,6 @@ const entrees = [
           </MenuSection>
         </div>
 
-       
         <div className="grid lg:grid-cols-2 gap-8">
           <MenuSection title="Jaa Nae Dhuna Laa?">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200">
@@ -339,7 +329,6 @@ const entrees = [
           </MenuSection>
         </div>
 
-        
         <div className="grid lg:grid-cols-2 gap-8">
           <MenuSection title="Chaaku Maakku">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200">
@@ -358,7 +347,6 @@ const entrees = [
           </MenuSection>
         </div>
 
-       
         <div className="grid lg:grid-cols-2 gap-8">
           <MenuSection title="Chicken Lover!">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200">
@@ -377,7 +365,6 @@ const entrees = [
           </MenuSection>
         </div>
 
-       
         <MenuSection title="Waamu Paamu (Salads)">
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
             {salads.map((item, idx) => (
@@ -386,24 +373,25 @@ const entrees = [
                 className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-amber-200 flex justify-between items-center"
               >
                 <div>
-                  <span className="text-amber-950 font-medium">{item.name}</span>
-      {item.tag && (
-  <span
-    className={`inline-block ml-2 h-2.5 w-2.5 rounded-full ${
-      item.tag === "VEGETARIAN"
-        ? "bg-green-600"
-        : item.tag === "Contains Fruit"
-        ? "bg-orange-500"
-        : item.tag === "Spicy"
-        ? "bg-red-700"
-        : ""
-    }`}
-    title={item.tag}
-  />
-)}
-
+                  <span className="text-amber-950 font-medium">
+                    {item.name}
+                  </span>
+                  {item.tag && (
+                    <span
+                      className={`inline-block ml-2 h-2.5 w-2.5 rounded-full ${
+                        item.tag === "VEGETARIAN"
+                          ? "bg-green-600"
+                          : item.tag === "Contains Fruit"
+                            ? "bg-orange-500"
+                            : item.tag === "Spicy"
+                              ? "bg-red-700"
+                              : ""
+                      }`}
+                      title={item.tag}
+                    />
+                  )}
                 </div>
-               
+
                 <span
                   className="font-bold text-red-800 text-lg"
                   style={{ fontFamily: "serif" }}
@@ -415,7 +403,6 @@ const entrees = [
           </div>
         </MenuSection>
 
-        
         <MenuSection title="Twaniu Makhu La? (Drinks)">
           <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 border border-amber-200 overflow-x-auto">
             <table className="w-full">
@@ -481,7 +468,6 @@ const entrees = [
           </div>
         </MenuSection>
 
-   
         <div className="mt-12 pt-8 border-t-2 border-amber-700/30">
           <div className="flex flex-wrap justify-center gap-8 text-sm text-amber-900">
             <span className="flex items-center gap-2 bg-white/60 px-4 py-2 rounded-full">
@@ -502,32 +488,6 @@ const entrees = [
           </p>
         </div>
       </main>
-
-  
-      <footer className="bg-red-900 text-amber-100 py-12 px-4 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(251, 191, 36, 0.1) 35px, rgba(251, 191, 36, 0.1) 70px)`,
-          }}
-        ></div>
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h3
-            className="text-3xl font-bold uppercase mb-2"
-            style={{ fontFamily: "serif" }}
-          >
-            Harisiddhi Newa Suli
-          </h3>
-          <NewariPattern className="w-32 h-6 text-amber-400 mx-auto mb-4" />
-          <p className="text-amber-200/80 text-sm max-w-md mx-auto">
-            Authentic Newari Cuisine passed down through generations. Experience
-            the true taste of Harisiddhi.
-          </p>
-          <div className="mt-6 pt-6 border-t border-amber-700/50 text-xs text-amber-300/60">
-            <p>© 2026 Harisiddhi Newa Suli. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
