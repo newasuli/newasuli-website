@@ -37,7 +37,7 @@
   bottom: -2;
   height: 2px;
   width: 0;
-  background-color:var(--dark);
+  background-color: white;
   transition: all 0.3s ease;
 }
 
