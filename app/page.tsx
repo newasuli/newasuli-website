@@ -68,7 +68,7 @@ export default function Home() {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="inline-block px-4 py-2 mb-6 text-xs tracking-[0.3em] text-amber-200/90 uppercase border border-amber-200/30 rounded-full backdrop-blur-sm">
-              Est. 1995 • Harisiddhi
+              Est. 1982 • Harisiddhi
             </span>
           </motion.div>
 
@@ -107,30 +107,11 @@ export default function Home() {
                 <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
-            <Link
-              href="/reservation"
-              className="px-8 py-4 border border-stone-400/50 text-stone-200 hover:bg-stone-800/50 hover:border-stone-300 transition-all rounded-sm tracking-wide"
-            >
-              Book a Table
-            </Link>
+          
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        >
-          <div className="w-6 h-10 border-2 border-stone-400/50 rounded-full flex justify-center p-2">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-amber-400 rounded-full"
-            />
-          </div>
-        </motion.div>
+        
       </div>
 
       {/* Heritage Bar */}
@@ -146,7 +127,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2">
             <IoMdCall className="text-amber-600" />
-            <span>+977 1-5550123</span>
+            <a href="tel:+9779828711989">+977 9828711989</a>
           </div>
         </div>
       </div>
@@ -405,7 +386,6 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
    
       </section>
     </main>
