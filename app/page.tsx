@@ -406,23 +406,7 @@ export default function Home() {
           </div>
         </div>
 
-        <footer className="py-12 border-t border-stone-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
-              <h4 className="text-2xl font-serif text-stone-100 mb-2">Harisiddhi Newa Suli</h4>
-              <p className="text-stone-500 text-sm">Authentic Newari Cuisine Since 1995</p>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <Link href="/menu" className="hover:text-amber-500 transition-colors">Menu</Link>
-              <Link href="/about" className="hover:text-amber-500 transition-colors">About</Link>
-              <Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link>
-              <Link href="/reservation" className="hover:text-amber-500 transition-colors">Reservations</Link>
-            </div>
-            <div className="text-stone-600 text-sm">
-              © 2024 Harisiddhi Newa Suli. All rights reserved.
-            </div>
-          </div>
-        </footer>
+   
       </section>
     </main>
   );
