@@ -240,49 +240,63 @@ const entrees = [
         style={{
           backgroundImage: "url('/images/paper-texture.png')",
           backgroundRepeat: "repeat",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       />
  
 
   
-      <section className="py-30 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-900 via-red-800 to-red-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 text-center md:text-left">
-              <span className="text-amber-300 text-xs font-bold uppercase tracking-[0.3em]">
-                Slow-Crafted
-              </span>
-              <h2
-                className="text-4xl md:text-5xl font-black text-amber-100 uppercase mt-2 mb-4"
-                style={{ fontFamily: "serif" }}
-              >
-                Special Newari Feast
-              </h2>
-              <p className="text-amber-200/90 mb-6 leading-relaxed max-w-xl">
-                Experience the authentic taste of Harisiddhi with our
-                traditional Newari feast, prepared with recipes passed down
-                through generations. Perfectly spiced and impossibly tender.
-              </p>
-              <button className="bg-amber-500 hover:bg-amber-400 text-red-900 font-bold py-3 px-8 rounded-sm uppercase tracking-wider text-sm transition-colors shadow-lg">
-                Order Special Set
-              </button>
-            </div>
-            <div className="w-full md:w-96 h-64 bg-amber-100/20 rounded-lg flex items-center justify-center border-4 border-amber-500/30 backdrop-blur-sm">
-              <div className="text-center text-amber-200">
-                <Image
-                  src="/images/newasuli_img_7.jpg"
-                  alt="Featured Newari Dish"
-                  fill
-                  className="object-cover rounded-lg shadow-md"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-950 via-red-900 to-red-800 relative overflow-hidden">
+
+
+  <div className="absolute inset-0 opacity-5 bg-[url('/images/paper-texture.png')] bg-repeat"></div>
+
+  <div className="max-w-6xl mx-auto relative z-10">
+    <div className="flex flex-col md:flex-row items-center gap-12">
+
+
+      <div className="flex-1 text-center md:text-left">
+
+        <span className="text-amber-300 text-xs font-semibold tracking-[0.4em]">
+          HARISIDDHI • LALITPUR
+        </span>
+
+        <h2
+          className="text-3xl md:text-5xl font-bold text-amber-100 mt-3"
+          style={{ fontFamily: "serif" }}
+        >
+          Special Newari Feast
+        </h2>
+
+ 
+        <div className="w-24 h-[2px] bg-amber-400 mt-5 mb-6 mx-auto md:mx-0"></div>
+
+        <p className="text-amber-200/90 mb-8 leading-relaxed max-w-xl">
+          Experience the authentic taste of Harisiddhi with our
+          traditional Newari feast, prepared with recipes passed down
+          through generations. Perfectly spiced and impossibly tender.
+        </p>
+
+        <button className="bg-amber-500 hover:bg-amber-400 text-red-900 font-semibold py-3 px-10 rounded-md uppercase tracking-[0.2em] text-sm transition-all duration-300 shadow-xl hover:scale-105">
+          Order Special Set
+        </button>
+
+      </div>
+
+ 
+      <div className="relative w-full md:w-96 h-64 rounded-lg overflow-hidden shadow-2xl border-4 border-amber-600/40">
+        <Image
+          src="/images/newasuli_img_7.jpg"
+          alt="Featured Newari Dish"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
       <main className="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative">
