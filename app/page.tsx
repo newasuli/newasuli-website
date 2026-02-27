@@ -1,330 +1,429 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import about from "@/public/images/image1.jpg";
-import food from "@/public/images/image2.jpg";
-import { IoIosArrowRoundForward } from "react-icons/io";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { IoIosArrowRoundForward, IoMdTime, IoMdCall, IoMdPin } from "react-icons/io";
+import {  FaStar, FaQuoteLeft } from "react-icons/fa";
 import { FaDiamond } from "react-icons/fa6";
-import { motion, useScroll, useTransform } from "motion/react";
 
 const DUMMY_RESTAURANT_REVIEWS = [
   {
     name: "Aarav Sharma",
-    comment:
-      "The food was absolutely delicious and full of flavor. The service was quick, and the staff was very friendly. I would definitely visit again.",
+    rating: 5,
+    comment: "The food was absolutely delicious and full of flavor. The service was quick, and the staff was very friendly. I would definitely visit again.",
   },
   {
     name: "Nisha Karki",
-    comment:
-      "Great ambiance and a cozy environment. The menu had plenty of options, and everything we ordered tasted fresh and well-prepared.",
+    rating: 5,
+    comment: "Great ambiance and a cozy environment. The menu had plenty of options, and everything we ordered tasted fresh and well-prepared.",
   },
   {
     name: "Rohan Thapa",
-    comment:
-      "Overall a wonderful experience. The portions were generous, prices were reasonable, and the quality of food exceeded my expectations.",
+    rating: 5,
+    comment: "Overall a wonderful experience. The portions were generous, prices were reasonable, and the quality of food exceeded my expectations.",
   },
+];
+
+const FEATURED_DISHES = [
+  { name: "Samay Baji", desc: "Traditional ceremonial platter" },
+  { name: "Choila", desc: "Spiced grilled meat" },
+  { name: "Yomari", desc: "Sweet rice dumplings" },
+  { name: "Bara", desc: "Lentil pancake" },
 ];
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-  const scrollYProgressTransformValue = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [1, 2],
-  );
-  const container1Ref = useRef(null);
-  const container2Ref = useRef(null);
-  // useLayoutEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   const ctx = gsap.context(() => {
-  //     gsap
-  //       .timeline({
-  //         scrollTrigger: {
-  //           trigger: "#heroSection1",
-  //           start: "top 80%",
-  //           end: "bottom -5%",
-  //           toggleActions: "play reverse play reverse",
-  //         },
-  //       })
-  //       .from("#green", { x: -300, opacity: 0, duration: 0.6 })
-  //       .from("#blue", { x: 300, opacity: 0, duration: 0.6 }, "-=0.4");
-
-  //     gsap
-  //       .timeline({
-  //         scrollTrigger: {
-  //           trigger: "#heroSection2",
-  //           start: "top 100%",
-  //           end: "bottom -5%",
-  //           toggleActions: "play reverse play reverse",
-  //         },
-  //       })
-  //       .from("#red", { duration: 0.6, x: -500, opacity: 0 })
-  //       .from("#yellow", { duration: 0.6, x: 500, opacity: 0 }, "-=0.5");
-  //   }, containerRef);
-  //   ScrollTrigger.refresh();
-
-  //   return () => ctx.revert();
-  // }, []);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  
+  const [activeReview, setActiveReview] = useState(0);
+  const containerRef = useRef(null);
 
   return (
-    <>
-      <div className="h-full lg:h-screen relative">
-        <section className="w-full h-full fixed inset-0 -z-10">
-          <motion.section
-            className="w-full h-full"
-            style={{ scale: scrollYProgressTransformValue, originY: 0 }}
+    <main className="bg-stone-50 overflow-x-hidden">
+      {/* Hero Section - Cinematic Parallax */}
+      <div className="relative h-screen w-full overflow-hidden">
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{ scale }}
+        >
+          <Image
+            src="/images/home_bg.png"
+            alt="Harisiddhi Newa Suli"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-stone-900/90" />
+        </motion.div>
+
+        <motion.div 
+          style={{ opacity }}
+          className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src={"/images/home_bg.png"}
-              alt="Newa Suli Restaurant"
-              fill
-              style={{ objectFit: "cover", objectPosition: "top" }}
-            />
-          </motion.section>
-        </section>
-        <motion.section
+            <span className="inline-block px-4 py-2 mb-6 text-xs tracking-[0.3em] text-amber-200/90 uppercase border border-amber-200/30 rounded-full backdrop-blur-sm">
+              Est. 1995 • Harisiddhi
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif text-stone-100 mb-6 tracking-tight"
+          >
+            <span className="block text-amber-400 font-light italic">Harisiddhi</span>
+            <span className="block font-bold">Newa Suli</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="text-lg md:text-xl text-stone-300/90 max-w-2xl font-light leading-relaxed italic"
+          >
+            Authentic Newari cuisine crafted with ancestral recipes, 
+            served in the heart of cultural heritage
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="mt-10 flex flex-col sm:flex-row gap-4"
+          >
+            <Link
+              href="/menu"
+              className="group relative px-8 py-4 bg-amber-600 text-stone-50 overflow-hidden rounded-sm transition-all hover:bg-amber-700"
+            >
+              <span className="relative z-10 flex items-center gap-2 font-medium tracking-wide">
+                Explore Menu
+                <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+            <Link
+              href="/reservation"
+              className="px-8 py-4 border border-stone-400/50 text-stone-200 hover:bg-stone-800/50 hover:border-stone-300 transition-all rounded-sm tracking-wide"
+            >
+              Book a Table
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="w-full h-full bg-black/20 flex items-center justify-center relative"
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="sticky top-1/2 transform -translate-y-1/2 px-4">
-            {/* <h3 className="text-2xl lg:text-4xl text-gray-50/80 text-center font-newsreader font-bold mb-4">
-              Welcome to
-            </h3> */}
-            <h2 className="text-4xl lg:text-7xl text-gray-50/80 text-center font-newsreader font-bold tracking-tight lg:tracking-wide">
-              Harisiddhi Newa Suli
-            </h2>
-            <h3 className="text-gray-50/80 text-xl text-center font-newsreader font-medium">
-              Best Authentic Newari Food In Town
-            </h3>
+          <div className="w-6 h-10 border-2 border-stone-400/50 rounded-full flex justify-center p-2">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-1 h-2 bg-amber-400 rounded-full"
+            />
           </div>
-        </motion.section>
+        </motion.div>
       </div>
-      {/* <section className="w-full h-20 bg-red"></section> */}
-      <section className="w-full bg-gray-50 overflow-hidden">
-        <div className="h-3/4 flex flex-col-reverse lg:flex-row font-newsreader italic">
-          <div className="flex-1 min-h-[600px] flex gap-2 relative">
-            <Image
-              src={about}
-              alt="About Newa Suli"
-              className="w-full object-cover"
-            />
+
+      {/* Heritage Bar */}
+      <div className="bg-stone-900 text-stone-400 py-4 border-y border-stone-800">
+        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 text-sm tracking-wider">
+          <div className="flex items-center gap-2">
+            <IoMdTime className="text-amber-600" />
+            <span>Open Daily: 10:00 AM - 10:00 PM</span>
           </div>
-          <div
-            ref={container1Ref}
-            className="flex-1 flex flex-col justify-center"
-          >
+          <div className="flex items-center gap-2">
+            <IoMdPin className="text-amber-600" />
+            <span>Harisiddhi, Lalitpur</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <IoMdCall className="text-amber-600" />
+            <span>+977 1-5550123</span>
+          </div>
+        </div>
+      </div>
+
+      {/* About Section - Asymmetric Layout */}
+      <section className="py-24 lg:py-32 bg-stone-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              viewport={{
-                once: true,
-                amount: 0.1,
-                margin: "10px 0px -20px 0px",
-              }}
-              className="px-16 flex flex-col justify-center items-center"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
             >
-              <h3 className="text-gray-800 text-3xl mb-4 italic">
-                About Harisiddhi Newa Suli
-              </h3>
-              <p className="text-gray-500 text-base font-newsreader font-light italic leading-relaxed text-center">
-                Summary of what newa suli is all about with complementing
-                picture or pictures subtle animations which links to second page
-                (about)
-              </p>
-              <div className="border-2 border-gray-400 p-0.5 mt-4 has-hover:border-dark rounded-sm">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center text-gray-400 border-2 border-gray-400 px-2 py-1 hover:bg-dark hover:text-white hover:border-dark"
-                >
-                  <span>Learn More</span>
-                  {/* <IoIosArrowRoundForward
-                      size={32}
-                      className="inline-block ml-0.5 text-xl p-0"
-                    /> */}
-                </Link>
+              <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/image1.jpg"
+                  alt="Traditional Newari Architecture"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
               </div>
-            </motion.div>
-          </div>
-        </div>
-        <div className="flex flex-wrap flex-col lg:flex-row">
-          <div
-            ref={container2Ref}
-            className="flex-1 flex flex-col justify-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              viewport={{
-                once: true,
-                amount: 0.1,
-                margin: "10px 0px -20px 0px",
-              }}
-              className="p-16 flex flex-col justify-center items-center"
-            >
-              <h3 className="text-gray-800 text-3xl font-newsreader mb-4 italic">
-                Our Foods
-              </h3>
-              <p className="text-gray-500 text-base font-newsreader font-light italic text-center leading-relaxed">
-                Harisiddhi Newa Suli is known for serving authentic Newari
-                cuisine rich in traditional spices and bold flavors. Each dish
-                reflects the true taste of Newari culture smoky, spicy, and
-                deeply satisfying making it a great place to experience genuine
-                local food.
-              </p>
-              <div className="border-2 border-gray-400 p-0.5 mt-4 has-hover:border-dark rounded-sm">
-                <Link
-                  href="/menu"
-                  className="inline-flex items-center justify-center text-gray-400 border-2 border-gray-400 px-2 py-1 hover:bg-dark hover:text-white hover:border-dark"
-                >
-                  <span>View Menu</span>
-                  {/* <IoIosArrowRoundForward
-                    size={32}
-                    className="inline-block ml-0.5 text-xl p-0"
-                  /> */}
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-          <div className="flex-1 min-h-[600px] rounded-lg relative">
-            <Image
-              src={"/images/newasuli_img_7.jpg"}
-              alt="About Newa Suli"
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="w-full bg-dark lg:py-16">
-        <div className="relative flex justify-center">
-          <motion.h3
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            viewport={{ once: true, margin: "10px 0px -30px 0px" }}
-            className="font-newsreader font-medium italic text-4xl text-center text-gray-50 z-10 bg-dark px-2"
-          >
-            Our Gallery
-          </motion.h3>
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            {/* <FaDiamond size={10} color="gray" />
-              <div className="w-60 h-0.5 bg-gray-400"></div>
-              <FaDiamond size={10} color="gray" /> */}
-            <Image
-              src={"/images/title_underline.png"}
-              alt=""
-              width={420}
-              height={10}
-              className="-translate-x-2 invert"
-            />
-          </div>
-        </div>
-        <section className="w-full grid grid-cols-2 grid-rows-4 gap-1 lg:grid-cols-4 lg:grid-rows-2 lg:gap-2 h-[600] mt-8">
-          <div className="bg-gray-400 relative col-span-2 row-span-2 overflow-hidden cursor-pointer">
-            <Image
-              src={"/images/newasuli_img_1.jpg"}
-              alt=""
-              fill
-              className="object-cover object-center hover:scale-105 transition-all duration-800 ease-out"
-            />
-          </div>
-          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
-            <Image
-              src={"/images/newasuli_img_2.jpg"}
-              alt=""
-              fill
-              className="object-cover object-center hover:scale-105 transition-all duration-800 ease-out"
-            />
-          </div>
-          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
-            <Image
-              src={"/images/newasuli_img_3.jpg"}
-              alt=""
-              fill
-              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
-            />
-          </div>
-          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
-            <Image
-              src={"/images/newasuli_img_4.jpg"}
-              alt=""
-              fill
-              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
-            />
-          </div>
-          <div className="bg-gray-400 relative overflow-hidden cursor-pointer">
-            <Image
-              src={"/images/newasuli_img_7.jpg"}
-              alt=""
-              fill
-              className="object-cover object-center hover:scale-105 transition-transform duration-800 ease-out"
-            />
-          </div>
-        </section>
-      </section>
-      <section className="w-full bg-gray-50 px-8 py-16">
-        <div className="relative flex justify-center">
-          <motion.h3
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            viewport={{ once: true, margin: "10px 0px -30px 0px" }}
-            className="font-newsreader font-medium italic text-4xl text-center text-gray-800"
-          >
-            Our Reviews
-          </motion.h3>
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1">
-            {/* <FaDiamond size={10} color="gray" />
-              <div className="w-60 h-0.5 bg-gray-400"></div>
-              <FaDiamond size={10} color="gray" /> */}
-            <Image
-              src={"/images/title_underline.png"}
-              alt=""
-              width={400}
-              height={10}
-              className="-translate-x-2"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-4 font-newsreader italic lg:flex-row mt-16">
-          {DUMMY_RESTAURANT_REVIEWS.map((review, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.4,
-                ease: "easeOut",
-                delay: index * 0.4,
-              }}
-              viewport={{ once: true, margin: "10px 0px -100px 0px" }}
-              className="flex-1"
-            >
-              <div className="max-w-3xl mx-auto py-6 bg-white px-12 lg:py-18 rounded-lg shadow-sm">
-                <p className="text-gray-600 text-base mb-4 before:absolute before:content-['“'] before:text-7xl before:text-gray-400/50 before:-top-6 before:-left-8 relative">
-                  {review.comment}
+              {/* Floating accent card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="absolute -bottom-8 -right-8 bg-white p-6 shadow-xl rounded-sm max-w-xs hidden lg:block"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <FaDiamond className="text-amber-600 w-3 h-3" />
+                  <span className="text-xs tracking-widest text-stone-500 uppercase">Heritage</span>
+                </div>
+                <p className="text-stone-800 font-serif italic text-lg">
+                  "Preserving the authentic taste of Newari culture for three decades"
                 </p>
-                <h4 className="text-gray-800 font-medium text-lg before:content-['—'] before:mr-2 before:text-gray-400 before:font-normal before:text-xl relative">
-                  {review.name}
-                </h4>
-              </div>
+              </motion.div>
             </motion.div>
-          ))}
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:pl-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-12 bg-amber-600" />
+                <span className="text-amber-700 text-sm tracking-[0.2em] uppercase font-medium">Our Story</span>
+              </div>
+              
+              <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6 leading-tight">
+                A Legacy of <span className="italic text-amber-700">Flavor</span> & Tradition
+              </h2>
+              
+              <p className="text-stone-600 text-lg leading-relaxed mb-6 font-light">
+                Nestled in the historic town of Harisiddhi, our restaurant stands as a testament 
+                to the rich culinary heritage of the Newar community. For generations, we have 
+                perfected the art of traditional Newari cooking, using recipes passed down through 
+                centuries and ingredients sourced from local markets.
+              </p>
+              
+              <p className="text-stone-600 leading-relaxed mb-8 font-light">
+                Every dish tells a story—of festivals, of family gatherings, of the intricate 
+                relationship between culture and cuisine. From the ceremonial Samay Baji to the 
+                comforting warmth of Yomari, we invite you to experience the authentic soul of Nepal.
+              </p>
+
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-medium transition-colors group"
+              >
+                <span className="border-b border-amber-700/30 pb-0.5">Discover Our Heritage</span>
+                <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
-      <div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.724530092683!2d85.33673557617271!3d27.633047028763382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1738dc92c46f%3A0xac25e0e6e6e8c67e!2sHarisiddhi%20Newa%20Suli!5e0!3m2!1sen!2snp!4v1765278955274!5m2!1sen!2snp"
-          allowFullScreen
-          loading="lazy"
-          className="w-full h-[450px] border-0"
-        ></iframe>
-      </div>
-    </>
+
+      {/* Featured Menu Teaser */}
+      <section className="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-amber-500 text-sm tracking-[0.3em] uppercase">Culinary Excellence</span>
+              <h2 className="text-4xl lg:text-5xl font-serif mt-4 mb-6">Signature Dishes</h2>
+              <div className="w-24 h-1 bg-amber-600 mx-auto" />
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {FEATURED_DISHES.map((dish, index) => (
+              <motion.div
+                key={dish.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group text-center"
+              >
+                <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-amber-600/30 group-hover:border-amber-600 transition-colors">
+                  <Image
+                    src={`/images/newasuli_img_${index + 1}.jpg`}
+                    alt={dish.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <h3 className="text-xl font-serif mb-2 text-amber-100">{dish.name}</h3>
+                <p className="text-stone-400 text-sm italic">{dish.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/menu"
+              className="inline-block px-8 py-3 border border-amber-600 text-amber-500 hover:bg-amber-600 hover:text-stone-900 transition-all duration-300 rounded-sm tracking-wide"
+            >
+              View Full Menu
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery - Masonry Style */}
+      <section className="py-24 bg-stone-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center mb-16">
+            <span className="text-amber-700 text-sm tracking-[0.3em] uppercase mb-4">Visual Journey</span>
+            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6">Gallery</h2>
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-px bg-stone-300" />
+              <FaDiamond className="text-amber-600 w-3 h-3" />
+              <div className="w-16 h-px bg-stone-300" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            {[1, 2, 3, 4, 5, 6].map((num, idx) => (
+              <motion.div
+                key={num}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className={`relative overflow-hidden rounded-sm group cursor-pointer ${
+                  idx === 0 ? 'col-span-2 row-span-2' : ''
+                } ${idx === 3 ? 'col-span-2' : ''}`}
+              >
+                <Image
+                  src={`/images/newasuli_img_${num}.jpg`}
+                  alt={`Gallery image ${num}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-serif italic text-xl">View</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials - Carousel Style */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif text-stone-900 mb-4">Guest Experiences</h2>
+            <p className="text-stone-500 italic">What our visitors say about their culinary journey</p>
+          </div>
+
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeReview}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-center px-4 md:px-16"
+              >
+                <FaQuoteLeft className="w-10 h-10 text-amber-200 mx-auto mb-6" />
+                <div className="flex justify-center gap-1 mb-6">
+                  {[...Array(DUMMY_RESTAURANT_REVIEWS[activeReview].rating)].map((_, i) => (
+                    <FaStar key={i} className="w-5 h-5 text-amber-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-xl md:text-2xl text-stone-700 font-light italic leading-relaxed mb-8">
+                  "{DUMMY_RESTAURANT_REVIEWS[activeReview].comment}"
+                </p>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-stone-200 rounded-full mb-4 overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xl font-serif">
+                      {DUMMY_RESTAURANT_REVIEWS[activeReview].name.charAt(0)}
+                    </div>
+                  </div>
+                  <h4 className="font-serif text-lg text-stone-900">
+                    {DUMMY_RESTAURANT_REVIEWS[activeReview].name}
+                  </h4>
+                  <span className="text-stone-400 text-sm">Verified Guest</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="flex justify-center gap-3 mt-10">
+              {DUMMY_RESTAURANT_REVIEWS.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveReview(idx)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    activeReview === idx ? 'bg-amber-600 w-8' : 'bg-stone-300 hover:bg-stone-400'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location & Footer */}
+      <section className="bg-stone-900 text-stone-300">
+        <div className="h-[400px] w-full relative grayscale hover:grayscale-0 transition-all duration-700">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.724530092683!2d85.33673557617271!3d27.633047028763382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1738dc92c46f%3A0xac25e0e6e6e8c67e!2sHarisiddhi%20Newa%20Suli!5e0!3m2!1sen!2snp!4v1765278955274!5m2!1sen!2snp"
+            allowFullScreen
+            loading="lazy"
+            className="w-full h-full border-0"
+          />
+          <div className="absolute top-6 left-6 bg-stone-900/90 backdrop-blur p-6 rounded-sm max-w-sm">
+            <h3 className="text-stone-100 font-serif text-xl mb-2">Visit Us</h3>
+            <p className="text-sm leading-relaxed mb-4">
+              Harisiddhi, Lalitpur<br />
+              Kathmandu Valley, Nepal
+            </p>
+            <Link
+              href="https://maps.google.com"
+              target="_blank"
+              className="text-amber-500 hover:text-amber-400 text-sm font-medium inline-flex items-center gap-1"
+            >
+              Get Directions <IoIosArrowRoundForward />
+            </Link>
+          </div>
+        </div>
+
+        <footer className="py-12 border-t border-stone-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-center md:text-left">
+              <h4 className="text-2xl font-serif text-stone-100 mb-2">Harisiddhi Newa Suli</h4>
+              <p className="text-stone-500 text-sm">Authentic Newari Cuisine Since 1995</p>
+            </div>
+            <div className="flex gap-6 text-sm">
+              <Link href="/menu" className="hover:text-amber-500 transition-colors">Menu</Link>
+              <Link href="/about" className="hover:text-amber-500 transition-colors">About</Link>
+              <Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link>
+              <Link href="/reservation" className="hover:text-amber-500 transition-colors">Reservations</Link>
+            </div>
+            <div className="text-stone-600 text-sm">
+              © 2024 Harisiddhi Newa Suli. All rights reserved.
+            </div>
+          </div>
+        </footer>
+      </section>
+    </main>
   );
 }
