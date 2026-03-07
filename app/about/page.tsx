@@ -216,7 +216,7 @@ export default function About() {
                 <span className="italic text-amber-700">Newa Suli</span>
               </h2>
 
-              <div className="prose prose-stone prose-lg text-stone-600 font-light leading-relaxed space-y-6 text-justify">
+              <div className="prose prose-stone prose-lg text-stone-600 font-light leading-relaxed space-y-6">
                 <p>
                   Nestled in the heart of Harisiddhi, one of the oldest
                   settlements in the Kathmandu Valley, our restaurant carries
@@ -262,14 +262,7 @@ export default function About() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-24 bg-stone-100 " style={
-        {
-          backgroundImage:"url('/images/paper-texture.png')",
-          backgroundSize:"cover",
-          backgroundPosition:"center",
-          backgroundAttachment:"fixed"
-        }
-      }>
+      <section className="py-24 bg-stone-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-amber-700 text-sm tracking-[0.3em] uppercase font-medium">
@@ -283,7 +276,7 @@ export default function About() {
 
           <div className="relative">
             {/* Center Line */}
-            <div className="absolute border-2 border-white left-1/2 transform -translate-x-1/2 h-full w-px bg-white hidden md:block" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-stone-300 hidden md:block" />
 
             <div className="space-y-12">
               {timeline.map((item, idx) => (
@@ -437,8 +430,6 @@ export default function About() {
               </h2>
 
               <div className="space-y-6 text-stone-600 font-light leading-relaxed">
-              
-              <div className="space-y-6 text-stone-600 font-light leading-relaxed text-justify">
                 <p>
                   Newari cuisine is deeply intertwined with the cultural and
                   religious life of the Newar people. Every dish has its place
