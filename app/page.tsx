@@ -2,26 +2,41 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { IoIosArrowRoundForward, IoMdTime, IoMdCall, IoMdPin } from "react-icons/io";
-import {  FaStar, FaQuoteLeft } from "react-icons/fa";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  IoIosArrowRoundForward,
+  IoMdTime,
+  IoMdCall,
+  IoMdPin,
+  IoIosArrowForward,
+  IoIosArrowBack,
+} from "react-icons/io";
+import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import { FaDiamond } from "react-icons/fa6";
 
 const DUMMY_RESTAURANT_REVIEWS = [
   {
     name: "Aarav Sharma",
     rating: 5,
-    comment: "The food was absolutely delicious and full of flavor. The service was quick, and the staff was very friendly. I would definitely visit again.",
+    comment:
+      "The food was absolutely delicious and full of flavor. The service was quick, and the staff was very friendly. I would definitely visit again.",
   },
   {
     name: "Nisha Karki",
     rating: 5,
-    comment: "Great ambiance and a cozy environment. The menu had plenty of options, and everything we ordered tasted fresh and well-prepared.",
+    comment:
+      "Great ambiance and a cozy environment. The menu had plenty of options, and everything we ordered tasted fresh and well-prepared.",
   },
   {
     name: "Rohan Thapa",
     rating: 5,
-    comment: "Overall a wonderful experience. The portions were generous, prices were reasonable, and the quality of food exceeded my expectations.",
+    comment:
+      "Overall a wonderful experience. The portions were generous, prices were reasonable, and the quality of food exceeded my expectations.",
   },
 ];
 
@@ -36,18 +51,38 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  
+
   const [activeReview, setActiveReview] = useState(0);
-  const containerRef = useRef(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
+
+  // auto cycle reviews every 5 seconds
+  useState(() => {
+    const interval = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % DUMMY_RESTAURANT_REVIEWS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  });
+
+  //Scroll function when button is clicked
+  const scroll = (direction: "left" | "right") => {
+    if (!galleryRef.current) return;
+
+    const firstChild = galleryRef.current.firstElementChild as HTMLElement;
+    if (!firstChild) return;
+
+    const scrollAmount = firstChild.offsetWidth + 16; // gap-4 = 16px
+
+    galleryRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <main className="bg-stone-50 overflow-x-hidden">
       {/* Hero Section - Cinematic Parallax */}
       <div className="relative h-screen w-full overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ scale }}
-        >
+        <motion.div className="absolute inset-0 z-0" style={{ scale }}>
           <Image
             src="/images/home_bg.png"
             alt="Harisiddhi Newa Suli"
@@ -55,10 +90,10 @@ export default function Home() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-stone-900/90" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-stone-900/90" />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           style={{ opacity }}
           className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center"
         >
@@ -78,7 +113,9 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-7xl lg:text-8xl font-serif text-stone-100 mb-6 tracking-tight"
           >
-            <span className="block text-amber-400 font-light italic">Harisiddhi</span>
+            <span className="block text-amber-400 font-light italic">
+              Harisiddhi
+            </span>
             <span className="block font-bold">Newa Suli</span>
           </motion.h1>
 
@@ -88,8 +125,8 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-lg md:text-xl text-stone-300/90 max-w-2xl font-light leading-relaxed italic"
           >
-            Authentic Newari cuisine crafted with ancestral recipes, 
-            served in the heart of cultural heritage
+            Authentic Newari cuisine crafted with ancestral recipes, served in
+            the heart of cultural heritage
           </motion.p>
 
           <motion.div
@@ -107,11 +144,8 @@ export default function Home() {
                 <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
-          
           </motion.div>
         </motion.div>
-
-        
       </div>
 
       {/* Heritage Bar */}
@@ -143,14 +177,14 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+              <div className="relative aspect-4/5 rounded-sm overflow-hidden shadow-2xl">
                 <Image
                   src="/images/image1.jpg"
                   alt="Traditional Newari Architecture"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-900/40 to-transparent" />
               </div>
               {/* Floating accent card */}
               <motion.div
@@ -162,10 +196,13 @@ export default function Home() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <FaDiamond className="text-amber-600 w-3 h-3" />
-                  <span className="text-xs tracking-widest text-stone-500 uppercase">Heritage</span>
+                  <span className="text-xs tracking-widest text-stone-500 uppercase">
+                    Heritage
+                  </span>
                 </div>
                 <p className="text-stone-800 font-serif italic text-lg">
-                  "Preserving the authentic taste of Newari culture for three decades"
+                  "Preserving the authentic taste of Newari culture for three
+                  decades"
                 </p>
               </motion.div>
             </motion.div>
@@ -179,31 +216,39 @@ export default function Home() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-12 bg-amber-600" />
-                <span className="text-amber-700 text-sm tracking-[0.2em] uppercase font-medium">Our Story</span>
+                <span className="text-amber-700 text-sm tracking-[0.2em] uppercase font-medium">
+                  Our Story
+                </span>
               </div>
-              
+
               <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6 leading-tight">
-                A Legacy of <span className="italic text-amber-700">Flavor</span> & Tradition
+                A Legacy of{" "}
+                <span className="italic text-amber-700">Flavor</span> &
+                Tradition
               </h2>
-              
+
               <p className="text-stone-600 text-lg leading-relaxed mb-6 font-light">
-                Nestled in the historic town of Harisiddhi, our restaurant stands as a testament 
-                to the rich culinary heritage of the Newar community. For generations, we have 
-                perfected the art of traditional Newari cooking, using recipes passed down through 
+                Nestled in the historic town of Harisiddhi, our restaurant
+                stands as a testament to the rich culinary heritage of the Newar
+                community. For generations, we have perfected the art of
+                traditional Newari cooking, using recipes passed down through
                 centuries and ingredients sourced from local markets.
               </p>
-              
+
               <p className="text-stone-600 leading-relaxed mb-8 font-light">
-                Every dish tells a story—of festivals, of family gatherings, of the intricate 
-                relationship between culture and cuisine. From the ceremonial Samay Baji to the 
-                comforting warmth of Yomari, we invite you to experience the authentic soul of Nepal.
+                Every dish tells a story—of festivals, of family gatherings, of
+                the intricate relationship between culture and cuisine. From the
+                ceremonial Samay Baji to the comforting warmth of Yomari, we
+                invite you to experience the authentic soul of Nepal.
               </p>
 
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-medium transition-colors group"
               >
-                <span className="border-b border-amber-700/30 pb-0.5">Discover Our Heritage</span>
+                <span className="border-b border-amber-700/30 pb-0.5">
+                  Discover Our Heritage
+                </span>
                 <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
@@ -216,7 +261,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <motion.div
@@ -224,8 +269,12 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-amber-500 text-sm tracking-[0.3em] uppercase">Culinary Excellence</span>
-              <h2 className="text-4xl lg:text-5xl font-serif mt-4 mb-6">Signature Dishes</h2>
+              <span className="text-amber-500 text-sm tracking-[0.3em] uppercase">
+                Culinary Excellence
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-serif mt-4 mb-6">
+                Signature Dishes
+              </h2>
               <div className="w-24 h-1 bg-amber-600 mx-auto" />
             </motion.div>
           </div>
@@ -238,18 +287,25 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group text-center"
+                className="group relative"
               >
-                <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-amber-600/30 group-hover:border-amber-600 transition-colors">
+                <div className="aspect-4/5 relative overflow-hidden rounded-sm">
                   <Image
-                    src={`/images/newasuli_img_${index + 1}.jpg`}
+                    src={"/images/newasuli_img_" + (index + 1) + ".jpg"}
                     alt={dish.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 </div>
-                <h3 className="text-xl font-serif mb-2 text-amber-100">{dish.name}</h3>
-                <p className="text-stone-400 text-sm italic">{dish.desc}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-xl font-serif text-amber-400 mb-2">
+                    {dish.name}
+                  </h3>
+                  <p className="text-stone-300 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                    {dish.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -265,12 +321,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery - Masonry Style */}
       <section className="py-24 bg-stone-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="flex flex-col items-center mb-16">
-            <span className="text-amber-700 text-sm tracking-[0.3em] uppercase mb-4">Visual Journey</span>
-            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6">Gallery</h2>
+            <span className="text-amber-700 text-sm tracking-[0.3em] uppercase mb-4">
+              Visual Journey
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6">
+              Gallery
+            </h2>
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-stone-300" />
               <FaDiamond className="text-amber-600 w-3 h-3" />
@@ -278,30 +337,42 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-            {[1, 2, 3, 4, 5, 6].map((num, idx) => (
-              <motion.div
-                key={num}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className={`relative overflow-hidden rounded-sm group cursor-pointer ${
-                  idx === 0 ? 'col-span-2 row-span-2' : ''
-                } ${idx === 3 ? 'col-span-2' : ''}`}
-              >
-                <Image
-                  src={`/images/newasuli_img_${num}.jpg`}
-                  alt={`Gallery image ${num}`}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white font-serif italic text-xl">View</span>
-                </div>
-              </motion.div>
-            ))}
+          <div className="relative">
+            <button
+              onClick={() => scroll("left")}
+              className="absolute top-1/2 left-2 z-20 bg-white/5 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/10 shadow-lg transition"
+            >
+              <IoIosArrowBack size={28} />
+            </button>
+            {/* Right Button */}
+            <button
+              onClick={() => scroll("right")}
+              className="absolute top-1/2 right-2 z-20 bg-white/5 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/20 shadow-lg transition"
+            >
+              <IoIosArrowForward size={28} />
+            </button>
+            <motion.div
+              ref={galleryRef}
+              className="w-full flex gap-4 overflow-x-auto snap snap-mandatory scroll-smooth relative no-scrollbar"
+            >
+              {[1, 2, 3, 4, 5, 6].map((num, idx) => (
+                <motion.div
+                  key={num}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className={`relative overflow-hidden rounded-sm group cursor-pointer h-[500px] w-full lg:w-1/4 shrink-0 snap-start`}
+                >
+                  <Image
+                    src={`/images/newasuli_img_${num}.jpg`}
+                    alt={`Gallery image ${num}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -310,8 +381,12 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif text-stone-900 mb-4">Guest Experiences</h2>
-            <p className="text-stone-500 italic">What our visitors say about their culinary journey</p>
+            <h2 className="text-4xl font-serif text-stone-900 mb-4">
+              Guest Experiences
+            </h2>
+            <p className="text-stone-500 italic">
+              What our visitors say about their culinary journey
+            </p>
           </div>
 
           <div className="relative">
@@ -326,8 +401,13 @@ export default function Home() {
               >
                 <FaQuoteLeft className="w-10 h-10 text-amber-200 mx-auto mb-6" />
                 <div className="flex justify-center gap-1 mb-6">
-                  {[...Array(DUMMY_RESTAURANT_REVIEWS[activeReview].rating)].map((_, i) => (
-                    <FaStar key={i} className="w-5 h-5 text-amber-500 fill-current" />
+                  {[
+                    ...Array(DUMMY_RESTAURANT_REVIEWS[activeReview].rating),
+                  ].map((_, i) => (
+                    <FaStar
+                      key={i}
+                      className="w-5 h-5 text-amber-500 fill-current"
+                    />
                   ))}
                 </div>
                 <p className="text-xl md:text-2xl text-stone-700 font-light italic leading-relaxed mb-8">
@@ -335,7 +415,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-stone-200 rounded-full mb-4 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xl font-serif">
+                    <div className="w-full h-full bg-linear-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xl font-serif">
                       {DUMMY_RESTAURANT_REVIEWS[activeReview].name.charAt(0)}
                     </div>
                   </div>
@@ -351,9 +431,10 @@ export default function Home() {
               {DUMMY_RESTAURANT_REVIEWS.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveReview(idx)}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    activeReview === idx ? 'bg-amber-600 w-8' : 'bg-stone-300 hover:bg-stone-400'
+                    activeReview === idx
+                      ? "bg-amber-600 w-8"
+                      : "bg-stone-300 hover:bg-stone-400"
                   }`}
                 />
               ))}
@@ -374,7 +455,8 @@ export default function Home() {
           <div className="absolute top-6 left-6 bg-stone-900/90 backdrop-blur p-6 rounded-sm max-w-sm">
             <h3 className="text-stone-100 font-serif text-xl mb-2">Visit Us</h3>
             <p className="text-sm leading-relaxed mb-4">
-              Harisiddhi, Lalitpur<br />
+              Harisiddhi, Lalitpur
+              <br />
               Kathmandu Valley, Nepal
             </p>
             <Link
@@ -386,7 +468,6 @@ export default function Home() {
             </Link>
           </div>
         </div>
-   
       </section>
     </main>
   );
