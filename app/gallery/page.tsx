@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -97,6 +97,21 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedEvent, setSelectedEvent] = useState<typeof pastEvents[0] | null>(null);
   const [activeTab, setActiveTab] = useState<"gallery" | "events">("gallery");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Swipe detection refs
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const minSwipeDistance = 50;
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const filteredImages = activeCategory === "All" 
     ? galleryImages 
@@ -112,12 +127,48 @@ export default function Gallery() {
     document.body.style.overflow = "unset";
   };
 
-  const navigateImage = (direction: "prev" | "next") => {
+  const navigateImage = useCallback((direction: "prev" | "next") => {
     if (selectedImage === null) return;
     const newIndex = direction === "next" 
       ? (selectedImage + 1) % filteredImages.length
       : (selectedImage - 1 + filteredImages.length) % filteredImages.length;
     setSelectedImage(newIndex);
+  }, [selectedImage, filteredImages.length]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImage === null) return;
+      if (e.key === 'ArrowLeft') navigateImage('prev');
+      if (e.key === 'ArrowRight') navigateImage('next');
+      if (e.key === 'Escape') closeLightbox();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, navigateImage]);
+
+  // Swipe handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      navigateImage('next');
+    }
+    if (isRightSwipe) {
+      navigateImage('prev');
+    }
   };
 
   const openEventGallery = (event: typeof pastEvents[0]) => {
@@ -146,7 +197,7 @@ export default function Gallery() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-       
+        
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -169,7 +220,7 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto"
+            className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto font-poppins italic"
           >
             A glimpse into our world of authentic Newari cuisine, tradition, and celebrations
           </motion.p>
@@ -177,7 +228,7 @@ export default function Gallery() {
       </section>
 
       {/* Tab Navigation */}
-      <section className="sticky top-0  bg-white border-b border-stone-200 shadow-sm">
+      <section className="sticky top-0 z-10 bg-white border-b border-stone-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center">
             <button
@@ -511,65 +562,113 @@ export default function Gallery() {
         </motion.div>
       )}
 
-      {/* Lightbox for Gallery */}
+      {/* Mobile-Optimized Lightbox with Swipe Support */}
       <AnimatePresence>
         {selectedImage !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-sm flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-stone-950/98 backdrop-blur-sm touch-none"
             onClick={closeLightbox}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
-            <button
-              onClick={closeLightbox}
-              className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-            >
-              <FaTimes className="w-6 h-6 text-white" />
-            </button>
-
+            {/* Close Button - Top Right, Larger Touch Target */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                navigateImage("prev");
+                closeLightbox();
               }}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+              className="absolute top-4 right-4 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors touch-manipulation"
+              aria-label="Close"
             >
-              <FaChevronLeft className="w-6 h-6 text-white" />
+              <FaTimes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </button>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigateImage("next");
-              }}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-            >
-              <FaChevronRight className="w-6 h-6 text-white" />
-            </button>
+            {/* Navigation Arrows - Hidden on mobile, shown on desktop */}
+            <div className="hidden sm:flex absolute inset-y-0 inset-x-4 items-center justify-between pointer-events-none z-40">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage("prev");
+                }}
+                className="pointer-events-auto w-14 h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Previous image"
+              >
+                <FaChevronLeft className="w-6 h-6 text-white" />
+              </button>
 
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage("next");
+                }}
+                className="pointer-events-auto w-14 h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Next image"
+              >
+                <FaChevronRight className="w-6 h-6 text-white" />
+              </button>
+            </div>
+
+            {/* Mobile Navigation - Bottom Bar */}
+            <div className="flex sm:hidden absolute bottom-24 inset-x-0 justify-between gap-4 z-40">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage("prev");
+                }}
+                className="w-12 h-12 bg-white/20 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Previous image"
+              >
+                <FaChevronLeft className="w-5 h-5 text-white" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage("next");
+                }}
+                className="w-12 h-12 bg-white/20 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Next image"
+              >
+                <FaChevronRight className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
+            {/* Image Container */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full h-full max-w-6xl max-h-[85vh] mx-4"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full h-full flex items-center justify-center p-4 sm:p-16"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
-                src={filteredImages[selectedImage].src}
-                alt={filteredImages[selectedImage].alt}
-                fill
-                className="object-contain"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <span className="text-amber-400 text-xs tracking-widest uppercase">
-                  {filteredImages[selectedImage].category}
-                </span>
-                <h3 className="text-white font-serif text-2xl mt-2">
-                  {filteredImages[selectedImage].alt}
-                </h3>
+              <div className="relative w-full h-full max-w-5xl max-h-[75vh] sm:max-h-[85vh]">
+                <Image
+                  src={filteredImages[selectedImage].src}
+                  alt={filteredImages[selectedImage].alt}
+                  fill
+                  className="object-contain select-none"
+                  sizes="100vw"
+                  priority
+                  draggable={false}
+                />
               </div>
             </motion.div>
+
+            {/* Image Info - Bottom */}
+            <div className="absolute bottom-4 sm:bottom-6 left-0 right-0 p-4 text-center">
+              <span className="text-amber-400 text-xs tracking-widest uppercase block mb-1">
+                {filteredImages[selectedImage].category}
+              </span>
+              <h3 className="text-white font-serif text-lg sm:text-xl">
+                {filteredImages[selectedImage].alt}
+              </h3>
+              <p className="text-stone-400 text-sm mt-2">
+                {selectedImage + 1} / {filteredImages.length}
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -586,12 +685,12 @@ export default function Gallery() {
             <div className="min-h-screen px-4 py-12">
               <button
                 onClick={closeEventGallery}
-                className="fixed top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors z-50"
+                className="fixed top-4 right-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
               >
                 <FaTimes className="w-6 h-6 text-white" />
               </button>
 
-              <div className="max-w-6xl mx-auto">
+              <div className="max-w-6xl mx-auto pt-8">
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
