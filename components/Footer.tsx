@@ -101,7 +101,7 @@ const Footer = () => {
       <div className="border-[0.5px] "></div>
       <div className="flex sm:justify-between justify-center flex-wrap md:gap-10 ">
         <p className="pt-4 mr-8 text-xs">
-          &copy;2026 HARISIDDHI NEWA SULI. ALL RIGHTS RESERVED
+          &copy;{new Date().getFullYear()} HARISIDDHI NEWA SULI. ALL RIGHTS RESERVED
         </p>
         <p className="pt-4 text-xs">Developed by Sapat, Suraj, Sagar.</p>
       </div>
