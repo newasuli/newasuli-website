@@ -97,13 +97,13 @@ export default function About() {
   return (
     <main className="bg-stone-50 min-h-screen">
       {/* Hero Section - Cinematic */}
-      <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/newasuli_img_1.jpg"
             alt="Harisiddhi Newa Suli Heritage"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900/90" />
@@ -137,22 +137,6 @@ export default function About() {
             generations of culinary tradition"
           </motion.p>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-stone-400/50 rounded-full flex justify-center p-2">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-amber-400 rounded-full"
-            />
-          </div>
-        </motion.div>
       </section>
 
       {/* Introduction Section */}

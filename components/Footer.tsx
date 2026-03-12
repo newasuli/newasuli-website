@@ -7,15 +7,11 @@ import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark font-poppins text-white pt-12 pb-8 lg:px-28 px-12">
-      <div className="grid md:grid-cols-4  grid-cols-2 gap-4 pb-14">
-        <div className="flex flex-col gap-2 items-center justify-center">
+    <footer className="bg-dark font-poppins text-white py-12 lg:px-28 px-12">
+      <div className="flex flex-col gap-4 pb-4">
+        <div className="flex gap-4 items-center justify-center mb-2">
           <Image src={Logo} className="w-24" alt="logo" />
-          <Image
-            src={TextLogo}
-            className="w-24 mx-8 hidden sm:block"
-            alt="logo"
-          />
+          <Image src={TextLogo} className="w-32" alt="logo" />
         </div>
         {/* <section>
           <p className="font-bold py-4">Quick Links</p>
@@ -46,10 +42,11 @@ const Footer = () => {
           </ul>
         </section> */}
 
-        <section>
-          <p className="font-medium mb-2 text-nowrap">Contacts</p>
-          <ul className="text-sm">
-            <li className="">
+        <section className="flex flex-col items-center">
+          {/* <p className="font-medium mb-2 text-nowrap">Contacts</p> */}
+          <ul className="flex flex-col items-center text-sm lg:text-based">
+            <li className="py-1">Godawari Road, Lalitpur, Nepal</li>
+            <li className="my-2">
               <Link className="hover-effect-underline" href="tel:982-8711989">
                 +977 9828711989
               </Link>
@@ -64,26 +61,25 @@ const Footer = () => {
                 info@newasuli.com
               </Link>
             </li>
-            <li className="py-1">Godawari Road, Lalitpur, Nepal</li>
           </ul>
         </section>
 
-        <section>
+        {/* <section>
           <p className="font-medium mb-2">Opening Hours</p>
           <ul className="text-sm">
             <li className="">Sun - Sat : 7am to 10pm</li>
           </ul>
-        </section>
+        </section> */}
 
-        <section>
-          <p className="font-medium mb-2">Follow Us</p>
+        <section className="flex flex-col items-center">
+          {/* <p className="font-medium mb-2">Follow Us</p> */}
           <ul className="text-sm flex ">
             <li>
               <Link
                 href="https://www.facebook.com/harisiddhinewasuli"
                 target="_blank"
               >
-                <FaFacebookSquare size={60} />
+                <FaFacebookSquare size={32} />
               </Link>
             </li>
             <li className="ml-3">
@@ -91,7 +87,7 @@ const Footer = () => {
                 href="https://www.instagram.com/harisiddhi.newa.suli/"
                 target="_blank"
               >
-                <FaInstagram size={60} />
+                <FaInstagram size={32} />
               </Link>
             </li>
           </ul>
@@ -99,11 +95,12 @@ const Footer = () => {
       </div>
 
       <div className="border-[0.5px] "></div>
-      <div className="flex sm:justify-between justify-center flex-wrap md:gap-10 ">
-        <p className="pt-4 mr-8 text-xs">
-          &copy;{new Date().getFullYear()} HARISIDDHI NEWA SULI. ALL RIGHTS RESERVED
+      <div className="flex justify-center flex-wrap md:gap-10 ">
+        <p className="pt-4 text-xs">
+          &copy;{new Date().getFullYear()} HARISIDDHI NEWA SULI. ALL RIGHTS
+          RESERVED
         </p>
-        <p className="pt-4 text-xs">Developed by Sapat, Suraj, Sagar.</p>
+        {/* <p className="pt-4 text-xs">Developed by Sapat, Suraj, Sagar.</p> */}
       </div>
     </footer>
   );
