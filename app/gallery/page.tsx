@@ -2,27 +2,55 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaTimes, 
-  FaChevronLeft, 
-  FaChevronRight, 
-  FaInstagram, 
+import {
+  FaTimes,
+  FaChevronLeft,
+  FaChevronRight,
+  FaInstagram,
   FaCamera,
   FaCalendarAlt,
   FaMapMarkerAlt,
   FaClock,
   FaUsers,
-  FaArrowRight
+  FaArrowRight,
 } from "react-icons/fa";
 
 const galleryImages = [
-  { src: "/images/newasuli_img_1.jpg", alt: "Traditional Newari Feast", category: "Food" },
-  { src: "/images/newasuli_img_2.jpg", alt: "Restaurant Interior", category: "Ambiance" },
-  { src: "/images/newasuli_img_3.jpg", alt: "Samay Baji Platter", category: "Food" },
-  { src: "/images/newasuli_img_4.jpg", alt: "Newari Cuisine", category: "Food" },
-  { src: "/images/newasuli_img_7.jpg", alt: "Dining Experience", category: "Ambiance" },
-  { src: "/images/newasuli_img_1.jpg", alt: "Yomari Preparation", category: "Kitchen" },
-  { src: "/images/newasuli_img_2.jpg", alt: "Cultural Setting", category: "Ambiance" },
+  {
+    src: "/images/newasuli_img_1.jpg",
+    alt: "Traditional Newari Feast",
+    category: "Food",
+  },
+  {
+    src: "/images/newasuli_img_2.jpg",
+    alt: "Restaurant Interior",
+    category: "Ambiance",
+  },
+  {
+    src: "/images/newasuli_img_3.jpg",
+    alt: "Samay Baji Platter",
+    category: "Food",
+  },
+  {
+    src: "/images/newasuli_img_4.jpg",
+    alt: "Newari Cuisine",
+    category: "Food",
+  },
+  {
+    src: "/images/newasuli_img_7.jpg",
+    alt: "Dining Experience",
+    category: "Ambiance",
+  },
+  {
+    src: "/images/newasuli_img_1.jpg",
+    alt: "Yomari Preparation",
+    category: "Kitchen",
+  },
+  {
+    src: "/images/newasuli_img_2.jpg",
+    alt: "Cultural Setting",
+    category: "Ambiance",
+  },
   { src: "/images/newasuli_img_3.jpg", alt: "Choila Dish", category: "Food" },
   { src: "/images/newasuli_img_4.jpg", alt: "Bara Special", category: "Food" },
 ];
@@ -34,29 +62,41 @@ const pastEvents = [
     id: 1,
     title: "Yomari Punhi Festival Celebration",
     date: "December 15, 2024",
-    description: "Traditional festival celebrating the harvest season with special Yomari making demonstrations and authentic Newari feast.",
-    images: ["/images/newasuli_img_1.jpg", "/images/newasuli_img_2.jpg", "/images/newasuli_img_3.jpg"],
+    description:
+      "Traditional festival celebrating the harvest season with special Yomari making demonstrations and authentic Newari feast.",
+    images: [
+      "/images/newasuli_img_1.jpg",
+      "/images/newasuli_img_2.jpg",
+      "/images/newasuli_img_3.jpg",
+    ],
     attendees: 120,
-    highlights: ["Live Yomari Making", "Traditional Music", "Cultural Dance"]
+    highlights: ["Live Yomari Making", "Traditional Music", "Cultural Dance"],
   },
   {
     id: 2,
     title: "Newari Food Festival 2024",
     date: "October 20, 2024",
-    description: "A grand celebration of Newari cuisine featuring 50+ traditional dishes, cooking workshops, and cultural performances.",
-    images: ["/images/newasuli_img_4.jpg", "/images/newasuli_img_7.jpg", "/images/newasuli_img_1.jpg", "/images/newasuli_img_2.jpg"],
+    description:
+      "A grand celebration of Newari cuisine featuring 50+ traditional dishes, cooking workshops, and cultural performances.",
+    images: [
+      "/images/newasuli_img_4.jpg",
+      "/images/newasuli_img_7.jpg",
+      "/images/newasuli_img_1.jpg",
+      "/images/newasuli_img_2.jpg",
+    ],
     attendees: 250,
-    highlights: ["Cooking Workshop", "Buffet Spread", "Cultural Show"]
+    highlights: ["Cooking Workshop", "Buffet Spread", "Cultural Show"],
   },
   {
     id: 3,
     title: "Mha Puja Special Dinner",
     date: "November 12, 2024",
-    description: "Exclusive Mha Puja celebration dinner featuring traditional Samay Baji and special rituals for prosperity.",
+    description:
+      "Exclusive Mha Puja celebration dinner featuring traditional Samay Baji and special rituals for prosperity.",
     images: ["/images/newasuli_img_3.jpg", "/images/newasuli_img_4.jpg"],
     attendees: 80,
-    highlights: ["Ritual Ceremony", "Family Feast", "Blessing Ceremony"]
-  }
+    highlights: ["Ritual Ceremony", "Family Feast", "Blessing Ceremony"],
+  },
 ];
 
 const upcomingEvents = [
@@ -66,9 +106,10 @@ const upcomingEvents = [
     date: "March 14, 2025",
     time: "6:00 PM - 10:00 PM",
     location: "Harisiddhi Newa Suli Garden",
-    description: "Celebrate Holi with a special colorful feast featuring traditional Newari delicacies, live music, and color play.",
+    description:
+      "Celebrate Holi with a special colorful feast featuring traditional Newari delicacies, live music, and color play.",
     image: "/images/newasuli_img_1.jpg",
-    features: ["Welcome Drink", "Color Play", "Live Music", "Buffet Dinner"]
+    features: ["Welcome Drink", "Color Play", "Live Music", "Buffet Dinner"],
   },
   {
     id: 5,
@@ -76,9 +117,15 @@ const upcomingEvents = [
     date: "September 2025",
     time: "5:00 PM - 11:00 PM",
     location: "Main Dining Hall & Courtyard",
-    description: "Experience the grandeur of Indra Jatra with traditional masked dances, Kumari blessings, and authentic festival foods.",
+    description:
+      "Experience the grandeur of Indra Jatra with traditional masked dances, Kumari blessings, and authentic festival foods.",
     image: "/images/newasuli_img_4.jpg",
-    features: ["Masked Dance", "Kumari Blessing", "Festival Foods", "Cultural Exhibition"]
+    features: [
+      "Masked Dance",
+      "Kumari Blessing",
+      "Festival Foods",
+      "Cultural Exhibition",
+    ],
   },
   {
     id: 6,
@@ -86,16 +133,24 @@ const upcomingEvents = [
     date: "April 20, 2025",
     time: "10:00 AM - 2:00 PM",
     location: "Newa Suli Kitchen",
-    description: "Learn the secrets of authentic Newari cooking from our master chefs. Includes hands-on preparation of Samay Baji and Yomari.",
+    description:
+      "Learn the secrets of authentic Newari cooking from our master chefs. Includes hands-on preparation of Samay Baji and Yomari.",
     image: "/images/newasuli_img_7.jpg",
-    features: ["Hands-on Cooking", "Recipe Book", "Lunch Included", "Certificate"]
-  }
+    features: [
+      "Hands-on Cooking",
+      "Recipe Book",
+      "Lunch Included",
+      "Certificate",
+    ],
+  },
 ];
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedEvent, setSelectedEvent] = useState<typeof pastEvents[0] | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<
+    (typeof pastEvents)[0] | null
+  >(null);
   const [activeTab, setActiveTab] = useState<"gallery" | "events">("gallery");
   const [isMobile, setIsMobile] = useState(false);
 
@@ -109,13 +164,14 @@ export default function Gallery() {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const filteredImages = activeCategory === "All" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeCategory);
+  const filteredImages =
+    activeCategory === "All"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === activeCategory);
 
   const openLightbox = (index: number) => {
     setSelectedImage(index);
@@ -127,24 +183,28 @@ export default function Gallery() {
     document.body.style.overflow = "unset";
   };
 
-  const navigateImage = useCallback((direction: "prev" | "next") => {
-    if (selectedImage === null) return;
-    const newIndex = direction === "next" 
-      ? (selectedImage + 1) % filteredImages.length
-      : (selectedImage - 1 + filteredImages.length) % filteredImages.length;
-    setSelectedImage(newIndex);
-  }, [selectedImage, filteredImages.length]);
+  const navigateImage = useCallback(
+    (direction: "prev" | "next") => {
+      if (selectedImage === null) return;
+      const newIndex =
+        direction === "next"
+          ? (selectedImage + 1) % filteredImages.length
+          : (selectedImage - 1 + filteredImages.length) % filteredImages.length;
+      setSelectedImage(newIndex);
+    },
+    [selectedImage, filteredImages.length],
+  );
 
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedImage === null) return;
-      if (e.key === 'ArrowLeft') navigateImage('prev');
-      if (e.key === 'ArrowRight') navigateImage('next');
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === "ArrowLeft") navigateImage("prev");
+      if (e.key === "ArrowRight") navigateImage("next");
+      if (e.key === "Escape") closeLightbox();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage, navigateImage]);
 
   // Swipe handlers
@@ -162,16 +222,16 @@ export default function Gallery() {
     const distance = touchStartX.current - touchEndX.current;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe) {
-      navigateImage('next');
+      navigateImage("next");
     }
     if (isRightSwipe) {
-      navigateImage('prev');
+      navigateImage("prev");
     }
   };
 
-  const openEventGallery = (event: typeof pastEvents[0]) => {
+  const openEventGallery = (event: (typeof pastEvents)[0]) => {
     setSelectedEvent(event);
     document.body.style.overflow = "hidden";
   };
@@ -197,8 +257,6 @@ export default function Gallery() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -222,7 +280,8 @@ export default function Gallery() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto font-poppins italic"
           >
-            A glimpse into our world of authentic Newari cuisine, tradition, and celebrations
+            A glimpse into our world of authentic Newari cuisine, tradition, and
+            celebrations
           </motion.p>
         </div>
       </section>
@@ -234,32 +293,32 @@ export default function Gallery() {
             <button
               onClick={() => setActiveTab("gallery")}
               className={`px-8 py-4 text-sm tracking-wide font-medium transition-all relative ${
-                activeTab === "gallery" 
-                  ? "text-stone-900" 
+                activeTab === "gallery"
+                  ? "text-stone-900"
                   : "text-stone-500 hover:text-stone-700"
               }`}
             >
               Gallery
               {activeTab === "gallery" && (
-                <motion.div 
+                <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-600" 
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-600"
                 />
               )}
             </button>
             <button
               onClick={() => setActiveTab("events")}
               className={`px-8 py-4 text-sm tracking-wide font-medium transition-all relative ${
-                activeTab === "events" 
-                  ? "text-stone-900" 
+                activeTab === "events"
+                  ? "text-stone-900"
                   : "text-stone-500 hover:text-stone-700"
               }`}
             >
               Events
               {activeTab === "events" && (
-                <motion.div 
+                <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-600" 
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-600"
                 />
               )}
             </button>
@@ -297,7 +356,7 @@ export default function Gallery() {
 
           {/* Masonry Gallery Grid */}
           <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <motion.div 
+            <motion.div
               layout
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[300px]"
             >
@@ -310,7 +369,9 @@ export default function Gallery() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   className={`relative overflow-hidden rounded-sm cursor-pointer group ${
-                    idx === 0 || idx === 4 ? 'md:col-span-2 lg:col-span-1 md:row-span-2' : ''
+                    idx === 0 || idx === 4
+                      ? "md:col-span-2 lg:col-span-1 md:row-span-2"
+                      : ""
                   }`}
                   onClick={() => openLightbox(idx)}
                 >
@@ -321,12 +382,14 @@ export default function Gallery() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <span className="text-amber-400 text-xs tracking-widest uppercase mb-2 block">
                       {image.category}
                     </span>
-                    <h3 className="text-white font-serif text-lg">{image.alt}</h3>
+                    <h3 className="text-white font-serif text-lg">
+                      {image.alt}
+                    </h3>
                   </div>
 
                   <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -391,7 +454,7 @@ export default function Gallery() {
                     <h3 className="text-xl font-serif text-stone-900 mb-3 group-hover:text-amber-700 transition-colors">
                       {event.title}
                     </h3>
-                    
+
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm text-stone-600">
                         <FaClock className="w-4 h-4 text-amber-600" />
@@ -409,7 +472,7 @@ export default function Gallery() {
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {event.features.map((feature, fidx) => (
-                        <span 
+                        <span
                           key={fidx}
                           className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-sm"
                         >
@@ -447,12 +510,14 @@ export default function Gallery() {
                     className="flex flex-col lg:flex-row gap-8 items-center"
                   >
                     {/* Image Grid - Responsive */}
-                    <div className={`w-full lg:w-1/2 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div
+                      className={`w-full lg:w-1/2 ${idx % 2 === 1 ? "lg:order-2" : ""}`}
+                    >
                       <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         {event.images.slice(0, 4).map((img, imgIdx) => (
-                          <div 
+                          <div
                             key={imgIdx}
-                            className={`relative overflow-hidden rounded-sm cursor-pointer group ${imgIdx === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'}`}
+                            className={`relative overflow-hidden rounded-sm cursor-pointer group ${imgIdx === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}
                             onClick={() => openEventGallery(event)}
                           >
                             <Image
@@ -464,7 +529,9 @@ export default function Gallery() {
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors" />
                             {imgIdx === 3 && event.images.length > 4 && (
                               <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                                <span className="text-white font-serif text-xl sm:text-2xl">+{event.images.length - 4}</span>
+                                <span className="text-white font-serif text-xl sm:text-2xl">
+                                  +{event.images.length - 4}
+                                </span>
                               </div>
                             )}
                           </div>
@@ -473,21 +540,33 @@ export default function Gallery() {
                     </div>
 
                     {/* Content - Responsive */}
-                    <div className={`w-full lg:w-1/2 ${idx % 2 === 1 ? 'lg:order-1 lg:text-right' : ''}`}>
-                      <div className={`flex items-center gap-3 mb-4 ${idx % 2 === 1 ? 'lg:justify-end' : ''}`}>
-                        <span className="text-amber-500 text-sm font-medium">{event.date}</span>
+                    <div
+                      className={`w-full lg:w-1/2 ${idx % 2 === 1 ? "lg:order-1 lg:text-right" : ""}`}
+                    >
+                      <div
+                        className={`flex items-center gap-3 mb-4 ${idx % 2 === 1 ? "lg:justify-end" : ""}`}
+                      >
+                        <span className="text-amber-500 text-sm font-medium">
+                          {event.date}
+                        </span>
                         <span className="w-1 h-1 bg-stone-600 rounded-full" />
-                        <span className="text-stone-400 text-sm">{event.attendees} attendees</span>
+                        <span className="text-stone-400 text-sm">
+                          {event.attendees} attendees
+                        </span>
                       </div>
-                      
-                      <h3 className="text-2xl sm:text-3xl font-serif mb-4">{event.title}</h3>
+
+                      <h3 className="text-2xl sm:text-3xl font-serif mb-4">
+                        {event.title}
+                      </h3>
                       <p className="text-stone-400 font-light leading-relaxed mb-6">
                         {event.description}
                       </p>
 
-                      <div className={`flex flex-wrap gap-3 mb-8 ${idx % 2 === 1 ? 'lg:justify-end' : ''}`}>
+                      <div
+                        className={`flex flex-wrap gap-3 mb-8 ${idx % 2 === 1 ? "lg:justify-end" : ""}`}
+                      >
                         {event.highlights.map((highlight, hidx) => (
-                          <span 
+                          <span
                             key={hidx}
                             className="px-3 py-1.5 sm:px-4 sm:py-2 bg-stone-800 text-stone-300 text-xs sm:text-sm rounded-sm"
                           >
@@ -496,14 +575,18 @@ export default function Gallery() {
                         ))}
                       </div>
 
-                      <button 
+                      <button
                         onClick={() => openEventGallery(event)}
-                        className={`inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors group ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+                        className={`inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors group ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
                       >
-                        {idx % 2 === 1 && <FaArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1 rotate-180" />}
+                        {idx % 2 === 1 && (
+                          <FaArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1 rotate-180" />
+                        )}
                         <FaCamera className="w-5 h-5" />
                         <span className="font-medium">View Gallery</span>
-                        {idx % 2 === 0 && <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+                        {idx % 2 === 0 && (
+                          <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        )}
                       </button>
                     </div>
                   </motion.div>
@@ -522,11 +605,12 @@ export default function Gallery() {
                 Host Your Special Occasion
               </h2>
               <div className="w-24 h-1 bg-amber-600 mx-auto mb-8" />
-              
+
               <p className="text-stone-600 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-                From intimate family gatherings to corporate celebrations, let us create 
-                an unforgettable Newari dining experience for your special event. 
-                Our team will handle every detail, from traditional decor to authentic cuisine.
+                From intimate family gatherings to corporate celebrations, let
+                us create an unforgettable Newari dining experience for your
+                special event. Our team will handle every detail, from
+                traditional decor to authentic cuisine.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
@@ -534,21 +618,29 @@ export default function Gallery() {
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FaUsers className="w-6 h-6 text-amber-700" />
                   </div>
-                  <h4 className="font-serif text-lg text-stone-900 mb-2">Capacity</h4>
+                  <h4 className="font-serif text-lg text-stone-900 mb-2">
+                    Capacity
+                  </h4>
                   <p className="text-sm text-stone-600">Up to 150 guests</p>
                 </div>
                 <div className="bg-white p-6 rounded-sm border border-stone-200">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FaCalendarAlt className="w-6 h-6 text-amber-700" />
                   </div>
-                  <h4 className="font-serif text-lg text-stone-900 mb-2">Booking</h4>
-                  <p className="text-sm text-stone-600">7 days advance notice</p>
+                  <h4 className="font-serif text-lg text-stone-900 mb-2">
+                    Booking
+                  </h4>
+                  <p className="text-sm text-stone-600">
+                    7 days advance notice
+                  </p>
                 </div>
                 <div className="bg-white p-6 rounded-sm border border-stone-200">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FaMapMarkerAlt className="w-6 h-6 text-amber-700" />
                   </div>
-                  <h4 className="font-serif text-lg text-stone-900 mb-2">Spaces</h4>
+                  <h4 className="font-serif text-lg text-stone-900 mb-2">
+                    Spaces
+                  </h4>
                   <p className="text-sm text-stone-600">Indoor & Garden</p>
                 </div>
               </div>
@@ -696,8 +788,12 @@ export default function Gallery() {
                   animate={{ y: 0, opacity: 1 }}
                   className="text-center mb-12"
                 >
-                  <span className="text-amber-500 text-sm tracking-widest uppercase">{selectedEvent.date}</span>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mt-2">{selectedEvent.title}</h2>
+                  <span className="text-amber-500 text-sm tracking-widest uppercase">
+                    {selectedEvent.date}
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mt-2">
+                    {selectedEvent.title}
+                  </h2>
                   <div className="flex items-center justify-center gap-4 mt-4 text-stone-400">
                     <span className="flex items-center gap-2">
                       <FaUsers className="w-4 h-4" />
@@ -727,7 +823,7 @@ export default function Gallery() {
 
                 <div className="mt-12 flex flex-wrap justify-center gap-3">
                   {selectedEvent.highlights.map((highlight, idx) => (
-                    <span 
+                    <span
                       key={idx}
                       className="px-4 py-2 bg-amber-600/20 text-amber-400 border border-amber-600/30 rounded-sm text-sm"
                     >

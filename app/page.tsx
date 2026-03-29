@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -47,7 +47,10 @@ const FEATURED_DISHES = [
   { name: "Bara", desc: "Lentil pancake" },
 ];
 
+const GALLERY_IMAGES = [1, 2, 3, 4, 5, 6];
+
 export default function Home() {
+  // Scroll-based hero transforms
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -55,25 +58,38 @@ export default function Home() {
   const [activeReview, setActiveReview] = useState(0);
   const galleryRef = useRef<HTMLDivElement | null>(null);
 
-  // auto cycle reviews every 5 seconds
-  useState(() => {
-    const interval = setInterval(() => {
-      setActiveReview((prev) => (prev + 1) % DUMMY_RESTAURANT_REVIEWS.length);
+  // Memoize review length to avoid recalculations
+  const reviewsLength = useMemo(
+    () => DUMMY_RESTAURANT_REVIEWS.length,
+    []
+  );
+
+  // Auto cycle reviews every 3 seconds (fixed: useEffect instead of useState)
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % reviewsLength);
     }, 3000);
-    return () => clearInterval(interval);
-  });
 
-  //Scroll function when button is clicked
-  const scroll = (direction: "left" | "right") => {
-    if (!galleryRef.current) return;
+    return () => window.clearInterval(interval);
+  }, [reviewsLength]);
 
-    const firstChild = galleryRef.current.firstElementChild as HTMLElement;
+  // Smooth scroll helper for gallery
+  const scrollGallery = (direction: "left" | "right") => {
+    const container = galleryRef.current;
+    if (!container) return;
+
+    const firstChild = container.firstElementChild as HTMLElement | null;
     if (!firstChild) return;
 
-    const scrollAmount = firstChild.offsetWidth + 16; // gap-4 = 16px
+    const gap = 16; // gap-4 = 16px
+    const scrollAmount = firstChild.offsetWidth + gap;
 
-    galleryRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
+    // On mobile, a slightly smaller scroll step feels smoother
+    const isMobile = window.innerWidth < 768;
+    const effectiveScroll = isMobile ? scrollAmount * 0.7 : scrollAmount;
+
+    container.scrollBy({
+      left: direction === "left" ? -effectiveScroll : effectiveScroll,
       behavior: "smooth",
     });
   };
@@ -321,6 +337,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gallery Section with smoother mobile scroll */}
       <section className="py-24 bg-stone-100">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="flex flex-col items-center mb-16">
@@ -339,35 +356,39 @@ export default function Home() {
 
           <div className="relative">
             <button
-              onClick={() => scroll("left")}
-              className="absolute top-1/2 left-2 z-20 bg-white/5 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/10 shadow-lg transition"
+              type="button"
+              onClick={() => scrollGallery("left")}
+              className="absolute top-1/2 left-2 z-20 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/10 shadow-lg transition"
             >
               <IoIosArrowBack size={28} />
             </button>
-            {/* Right Button */}
+
             <button
-              onClick={() => scroll("right")}
-              className="absolute top-1/2 right-2 z-20 bg-white/5 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/20 shadow-lg transition"
+              type="button"
+              onClick={() => scrollGallery("right")}
+              className="absolute top-1/2 right-2 z-20 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/20 shadow-lg transition"
             >
               <IoIosArrowForward size={28} />
             </button>
+
             <motion.div
               ref={galleryRef}
-              className="w-full flex gap-4 overflow-x-auto snap snap-mandatory scroll-smooth relative no-scrollbar"
+              className="w-full flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth relative no-scrollbar touch-pan-x"
             >
-              {[1, 2, 3, 4, 5, 6].map((num, idx) => (
+              {GALLERY_IMAGES.map((num, idx) => (
                 <motion.div
                   key={num}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className={`relative overflow-hidden rounded-sm group cursor-pointer h-[500px] w-full lg:w-1/4 shrink-0 snap-start`}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ delay: idx * 0.08 }}
+                  className="relative overflow-hidden rounded-sm group cursor-pointer h-[400px] sm:h-[450px] lg:h-[500px] w-3/4 sm:w-1/2 lg:w-1/4 shrink-0 snap-start"
                 >
                   <Image
                     src={`/images/newasuli_img_${num}.jpg`}
                     alt={`Gallery image ${num}`}
                     fill
+                    loading="lazy"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </motion.div>
@@ -472,3 +493,4 @@ export default function Home() {
     </main>
   );
 }
+

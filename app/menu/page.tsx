@@ -223,7 +223,7 @@ export default function Menu() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto"
+            className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto italic font-poppins"
           >
             Experience the authentic taste of Harisiddhi with traditional Newari recipes 
             passed down through generations

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Newsreader } from "next/font/google";
-import Footer from "../components/Footer";
+import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 
@@ -40,10 +40,8 @@ export default function RootLayout({
         className={`${poppins.variable} ${newsreader.variable} antialiased`}
       >
         <Navbar />
-        <main className="h-screen">
-          {children}
-          <Footer />
-        </main>
+        <main className="min-h-screen">{children}</main>
+        <Footer/>
       </body>
     </html>
   );
