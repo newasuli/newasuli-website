@@ -2,25 +2,28 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaLeaf, FaFire, FaAppleAlt } from "react-icons/fa";
+import { Leaf, Flame, Apple } from "lucide-react";
 
 const menuData = {
   entrees: [
     {
       name: "Harisiddhi Newa Suli Signature Set",
-      description: "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
       price: [1500, 2400],
       tag: "SIGNATURE",
     },
     {
       name: "Newa Suli Grand Set",
-      description: "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
       price: 3500,
       tag: "GRAND",
     },
     {
       name: "Newa Suli Veg Set",
-      description: "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
+      description:
+        "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
       price: 750,
       tag: "VEGETARIAN",
     },
@@ -117,13 +120,25 @@ const Tag = ({ type }: { type: string }) => {
   };
 
   return (
-    <span className={`text-xs px-2 py-1 rounded-sm uppercase tracking-wider font-medium border ${styles[type as keyof typeof styles] || styles.DEFAULT}`}>
+    <span
+      className={`text-xs px-2 py-1 rounded-sm uppercase tracking-wider font-medium border ${styles[type as keyof typeof styles] || styles.DEFAULT}`}
+    >
       {type}
     </span>
   );
 };
 
-const MenuItem = ({ name, description, price, tag }: { name: string; description?: string; price: number | number[]; tag?: string }) => (
+const MenuItem = ({
+  name,
+  description,
+  price,
+  tag,
+}: {
+  name: string;
+  description?: string;
+  price: number | number[];
+  tag?: string;
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +166,15 @@ const MenuItem = ({ name, description, price, tag }: { name: string; description
   </motion.div>
 );
 
-const SimpleMenuItem = ({ name, price, tag }: { name: string; price: number; tag?: string }) => (
+const SimpleMenuItem = ({
+  name,
+  price,
+  tag,
+}: {
+  name: string;
+  price: number;
+  tag?: string;
+}) => (
   <div className="flex justify-between items-center py-3 border-b border-stone-200 last:border-0 hover:bg-stone-50 px-2 transition-colors rounded-sm group">
     <div className="flex items-center gap-3">
       <span className="text-stone-800 font-light">{name}</span>
@@ -163,7 +186,15 @@ const SimpleMenuItem = ({ name, price, tag }: { name: string; price: number; tag
   </div>
 );
 
-const MenuSection = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
+const MenuSection = ({
+  title,
+  children,
+  className = "",
+}: {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}) => (
   <div className={`mb-16 ${className}`}>
     <div className="flex items-center gap-4 mb-8">
       <div className="h-px flex-1 bg-stone-300" />
@@ -225,8 +256,8 @@ export default function Menu() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto italic font-poppins"
           >
-            Experience the authentic taste of Harisiddhi with traditional Newari recipes 
-            passed down through generations
+            Experience the authentic taste of Harisiddhi with traditional Newari
+            recipes passed down through generations
           </motion.p>
         </div>
       </section>
@@ -392,20 +423,21 @@ export default function Menu() {
         <div className="mt-16 pt-8 border-t border-stone-200">
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <FaLeaf className="w-4 h-4 text-emerald-600" />
+              <Leaf className="w-4 h-4 text-emerald-600" />
               <span className="text-stone-600">Vegetarian</span>
             </div>
             <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <FaAppleAlt className="w-4 h-4 text-orange-500" />
+              <Apple className="w-4 h-4 text-orange-500" />
               <span className="text-stone-600">Contains Fruit</span>
             </div>
             <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <FaFire className="w-4 h-4 text-red-600" />
+              <Flame className="w-4 h-4 text-red-600" />
               <span className="text-stone-600">Spicy</span>
             </div>
           </div>
           <p className="mt-8 text-center text-xs text-stone-400">
-            All prices are inclusive of taxes • Prices subject to change without notice
+            All prices are inclusive of taxes • Prices subject to change without
+            notice
           </p>
         </div>
       </div>

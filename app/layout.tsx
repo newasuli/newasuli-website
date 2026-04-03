@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Poppins, Newsreader } from "next/font/google";
+import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import AdModal from "@/components/ad_modal";
+
+const AdModal = dynamic(() => import("@/components/ad_modal"));
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -43,7 +45,7 @@ export default function RootLayout({
         <AdModal />
         <Navbar />
         <main className="min-h-screen">{children}</main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaPhone } from "react-icons/fa";
+import { Phone } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -67,6 +67,7 @@ const Navbar = () => {
                     fill
                     className="object-contain"
                     priority
+                    sizes="(max-width: 768px) 48px, 56px"
                   />
                 </div>
                 <div
@@ -196,7 +197,7 @@ const Navbar = () => {
                   href="tel:+9779828711989"
                   className="flex items-center gap-3 text-stone-400 hover:text-amber-500 transition-colors"
                 >
-                  <FaPhone className="w-5 h-5" />
+                  <Phone className="w-5 h-5" />
                   <span className="text-lg">+977 982-8711989</span>
                 </a>
                 <p className="mt-4 text-sm text-stone-500">

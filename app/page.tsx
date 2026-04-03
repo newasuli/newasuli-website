@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,15 +10,19 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import {
-  IoIosArrowRoundForward,
-  IoMdTime,
-  IoMdCall,
-  IoMdPin,
-  IoIosArrowForward,
-  IoIosArrowBack,
-} from "react-icons/io";
-import { FaStar, FaQuoteLeft } from "react-icons/fa";
-import { FaDiamond } from "react-icons/fa6";
+  ArrowRightCircle,
+  Clock,
+  Phone,
+  MapPin,
+  ArrowRight,
+  ArrowLeft,
+  Star,
+  Quote,
+  Diamond,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { i } from "framer-motion/client";
 
 const DUMMY_RESTAURANT_REVIEWS = [
   {
@@ -41,10 +46,18 @@ const DUMMY_RESTAURANT_REVIEWS = [
 ];
 
 const FEATURED_DISHES = [
-  { name: "Samay Baji", desc: "Traditional ceremonial platter" },
-  { name: "Choila", desc: "Spiced grilled meat" },
-  { name: "Yomari", desc: "Sweet rice dumplings" },
-  { name: "Bara", desc: "Lentil pancake" },
+  {
+    name: "Samay Baji",
+    desc: "Traditional ceremonial platter",
+    image: "/images/samay_baji.png",
+  },
+  { name: "Choila", desc: "Spiced grilled meat", image: "/images/choila.jpg" },
+  {
+    name: "Yomari",
+    desc: "Sweet rice dumplings",
+    image: "/images/yomari.webp",
+  },
+  { name: "Bara", desc: "Lentil pancake", image: "/images/bara.jpg" },
 ];
 
 const GALLERY_IMAGES = [1, 2, 3, 4, 5, 6];
@@ -59,10 +72,7 @@ export default function Home() {
   const galleryRef = useRef<HTMLDivElement | null>(null);
 
   // Memoize review length to avoid recalculations
-  const reviewsLength = useMemo(
-    () => DUMMY_RESTAURANT_REVIEWS.length,
-    []
-  );
+  const reviewsLength = useMemo(() => DUMMY_RESTAURANT_REVIEWS.length, []);
 
   // Auto cycle reviews every 3 seconds (fixed: useEffect instead of useState)
   useEffect(() => {
@@ -105,6 +115,7 @@ export default function Home() {
             fill
             className="object-cover object-center"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-stone-900/90" />
         </motion.div>
@@ -157,7 +168,7 @@ export default function Home() {
             >
               <span className="relative z-10 flex items-center gap-2 font-medium tracking-wide">
                 Explore Menu
-                <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRightCircle className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           </motion.div>
@@ -168,15 +179,15 @@ export default function Home() {
       <div className="bg-stone-900 text-stone-400 py-4 border-y border-stone-800">
         <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 text-sm tracking-wider">
           <div className="flex items-center gap-2">
-            <IoMdTime className="text-amber-600" />
+            <Clock className="text-amber-600" />
             <span>Open Daily: 10:00 AM - 10:00 PM</span>
           </div>
           <div className="flex items-center gap-2">
-            <IoMdPin className="text-amber-600" />
+            <MapPin className="text-amber-600" />
             <span>Harisiddhi, Lalitpur</span>
           </div>
           <div className="flex items-center gap-2">
-            <IoMdCall className="text-amber-600" />
+            <Phone className="text-amber-600" />
             <a href="tel:+9779828711989">+977 9828711989</a>
           </div>
         </div>
@@ -199,6 +210,7 @@ export default function Home() {
                   alt="Traditional Newari Architecture"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-900/40 to-transparent" />
               </div>
@@ -211,7 +223,7 @@ export default function Home() {
                 className="absolute -bottom-8 -right-8 bg-white p-6 shadow-xl rounded-sm max-w-xs hidden lg:block"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <FaDiamond className="text-amber-600 w-3 h-3" />
+                  <Diamond className="text-amber-600 w-3 h-3" />
                   <span className="text-xs tracking-widest text-stone-500 uppercase">
                     Heritage
                   </span>
@@ -265,7 +277,7 @@ export default function Home() {
                 <span className="border-b border-amber-700/30 pb-0.5">
                   Discover Our Heritage
                 </span>
-                <IoIosArrowRoundForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRightCircle className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </div>
@@ -307,7 +319,7 @@ export default function Home() {
               >
                 <div className="aspect-4/5 relative overflow-hidden rounded-sm">
                   <Image
-                    src={"/images/newasuli_img_" + (index + 1) + ".jpg"}
+                    src={dish.image}
                     alt={dish.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -349,7 +361,7 @@ export default function Home() {
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-stone-300" />
-              <FaDiamond className="text-amber-600 w-3 h-3" />
+              <Diamond className="text-amber-600 w-3 h-3" />
               <div className="w-16 h-px bg-stone-300" />
             </div>
           </div>
@@ -360,7 +372,7 @@ export default function Home() {
               onClick={() => scrollGallery("left")}
               className="absolute top-1/2 left-2 z-20 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/10 shadow-lg transition"
             >
-              <IoIosArrowBack size={28} />
+              <ChevronLeft size={28} />
             </button>
 
             <button
@@ -368,7 +380,7 @@ export default function Home() {
               onClick={() => scrollGallery("right")}
               className="absolute top-1/2 right-2 z-20 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-lg border border-white/20 shadow-lg transition"
             >
-              <IoIosArrowForward size={28} />
+              <ChevronRight size={28} />
             </button>
 
             <motion.div
@@ -420,12 +432,12 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="text-center px-4 md:px-16"
               >
-                <FaQuoteLeft className="w-10 h-10 text-amber-200 mx-auto mb-6" />
+                <Quote className="w-10 h-10 text-amber-200 mx-auto mb-6" />
                 <div className="flex justify-center gap-1 mb-6">
                   {[
                     ...Array(DUMMY_RESTAURANT_REVIEWS[activeReview].rating),
                   ].map((_, i) => (
-                    <FaStar
+                    <Star
                       key={i}
                       className="w-5 h-5 text-amber-500 fill-current"
                     />
@@ -485,7 +497,7 @@ export default function Home() {
               target="_blank"
               className="text-amber-500 hover:text-amber-400 text-sm font-medium inline-flex items-center gap-1"
             >
-              Get Directions <IoIosArrowRoundForward />
+              Get Directions <ArrowRightCircle />
             </Link>
           </div> */}
         </div>
@@ -493,4 +505,3 @@ export default function Home() {
     </main>
   );
 }
-

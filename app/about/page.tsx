@@ -17,15 +17,15 @@ import { SplitText } from "gsap/SplitText";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { CustomEase } from "gsap/CustomEase";
 import {
-  FaPhone,
-  FaMapMarkerAlt,
-  FaClock,
-  FaArrowRight,
-  FaUtensils,
-  FaHeart,
-  FaLeaf,
-  FaLandmark,
-} from "react-icons/fa";
+  Phone,
+  MapPin,
+  Clock,
+  ArrowRight,
+  UtensilsCrossed,
+  Heart,
+  Leaf,
+  Building2,
+} from "lucide-react";
 
 // ─── PLUGIN REGISTRATION ──────────────────────────────────────────────────────
 
@@ -93,28 +93,28 @@ const timeline = [
 
 const values = [
   {
-    icon: FaUtensils,
+    icon: UtensilsCrossed,
     title: "Authenticity",
     description:
       "Every recipe follows traditional methods passed down through generations of Newari families.",
     accent: "#D97706",
   },
   {
-    icon: FaLeaf,
+    icon: Leaf,
     title: "Fresh Ingredients",
     description:
       "We source local, seasonal ingredients daily from trusted suppliers in the Kathmandu Valley.",
     accent: "#059669",
   },
   {
-    icon: FaHeart,
+    icon: Heart,
     title: "Family Heritage",
     description:
       "Our recipes are family treasures, prepared with the same care as in our ancestors' homes.",
     accent: "#E11D48",
   },
   {
-    icon: FaLandmark,
+    icon: Building2,
     title: "Cultural Preservation",
     description:
       "We keep Newari culinary traditions alive, sharing our heritage with every plate served.",
@@ -127,27 +127,23 @@ const specialties = [
     name: "Samay Baji",
     description:
       "The ceremonial Newari feast featuring beaten rice, lentils, meat, and traditional sides",
-    image:
-      "https://kimi-web-img.moonshot.cn/img/delishglobe.com/1313e63a17e42adc3df367b75fd7e474535a2f2d.png",
+    image: "/images/samay_baji.png",
   },
   {
     name: "Yomari",
     description:
       "Sweet steamed dumplings filled with molasses and sesame — a festival favorite",
-    image:
-      "https://kimi-web-img.moonshot.cn/img/images.squarespace-cdn.com/4d696cad31ac4935f57f92cdbe9e32a720476a55.png",
+    image: "/images/yomari.webp",
   },
   {
     name: "Choila",
     description: "Spicy grilled buffalo meat marinated in traditional spices",
-    image:
-      "https://kimi-web-img.moonshot.cn/img/www.insidehimalayas.com/edd42068a765dbc88485a90a3060d1ffec078720.jpg",
+    image: "/images/choila.jpg",
   },
   {
     name: "Bara",
     description: "Savory lentil pancakes — a Newari breakfast classic",
-    image:
-      "https://kimi-web-img.moonshot.cn/img/nepal8thwonder.com/d8cc3b35e0d1d7307d5f9de3c093eb6ad269f5b9.jpg",
+    image: "/images/bara.jpg",
   },
 ];
 
@@ -1083,12 +1079,9 @@ function Specialties() {
 
                   {/* Always visible on mobile, hover-reveal on desktop */}
                   <div className="specialty-reveal md:opacity-0">
-                    <p className="text-stone-400 text-xs md:text-sm font-light leading-relaxed mb-2 md:mb-4 hidden md:block">
+                    <p className="text-stone-400 text-xs md:text-sm font-light leading-relaxed mb-1 md:mb-4 hidden md:block">
                       {item.description}
                     </p>
-                    <span className="hidden md:inline-flex items-center gap-2 text-amber-500 text-xs tracking-widest uppercase">
-                      Discover <FaArrowRight className="w-3 h-3" />
-                    </span>
                   </div>
                 </div>
               </div>
@@ -1103,7 +1096,7 @@ function Specialties() {
             data-cursor="Menu"
           >
             <span>View Full Menu</span>
-            <FaArrowRight className="w-3 h-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-1 duration-300" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-1 duration-300" />
           </Link>
         </div>
       </div>
@@ -1238,7 +1231,7 @@ function Cultural() {
               data-cursor="Menu"
             >
               Explore Our Menu
-              <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-300" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-300" />
             </Link>
           </div>
 
@@ -1320,7 +1313,7 @@ function Visit() {
 
   const contacts = [
     {
-      icon: FaMapMarkerAlt,
+      icon: MapPin,
       title: "Location",
       content: (
         <p className="text-stone-500 font-light leading-relaxed text-sm">
@@ -1333,7 +1326,7 @@ function Visit() {
       ),
     },
     {
-      icon: FaClock,
+      icon: Clock,
       title: "Hours",
       content: (
         <p className="text-stone-500 font-light leading-relaxed text-sm">
@@ -1346,7 +1339,7 @@ function Visit() {
       ),
     },
     {
-      icon: FaPhone,
+      icon: Phone,
       title: "Contact",
       content: (
         <div className="space-y-2 text-sm">
@@ -1524,7 +1517,7 @@ function CTA() {
           data-cursor="Book"
         >
           Book a Table
-          <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-300" />
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-300" />
         </Link>
       </div>
     </section>

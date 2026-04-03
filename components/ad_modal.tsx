@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { MdClose } from "react-icons/md";
+import { X } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -37,13 +37,14 @@ const AdModal = () => {
             alt="Ad"
             fill
             className="object-cover rounded-lg"
+            sizes="(max-width: 768px) 90vw, 500px"
           />
           <div
             className="absolute -top-8 -right-8 cursor-pointer"
             onClick={handleClose}
             title="Close"
           >
-            <MdClose size={32} color="#ffffff" />
+            <X size={32} color="#ffffff" />
           </div>
         </motion.div>
       </AnimatePresence>

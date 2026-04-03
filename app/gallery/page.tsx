@@ -3,17 +3,16 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaTimes,
-  FaChevronLeft,
-  FaChevronRight,
-  FaInstagram,
-  FaCamera,
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-  FaClock,
-  FaUsers,
-  FaArrowRight,
-} from "react-icons/fa";
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Camera,
+  Calendar,
+  MapPin,
+  Clock,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 
 const galleryImages = [
   {
@@ -393,7 +392,7 @@ export default function Gallery() {
                   </div>
 
                   <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <FaCamera className="w-4 h-4 text-white" />
+                    <Camera className="w-4 h-4 text-white" />
                   </div>
                 </motion.div>
               ))}
@@ -444,7 +443,7 @@ export default function Gallery() {
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                       <div className="flex items-center gap-2 text-white text-sm">
-                        <FaCalendarAlt className="w-4 h-4 text-amber-400" />
+                        <Calendar className="w-4 h-4 text-amber-400" />
                         <span>{event.date}</span>
                       </div>
                     </div>
@@ -457,11 +456,11 @@ export default function Gallery() {
 
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm text-stone-600">
-                        <FaClock className="w-4 h-4 text-amber-600" />
+                        <Clock className="w-4 h-4 text-amber-600" />
                         <span>{event.time}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-stone-600">
-                        <FaMapMarkerAlt className="w-4 h-4 text-amber-600" />
+                        <MapPin className="w-4 h-4 text-amber-600" />
                         <span>{event.location}</span>
                       </div>
                     </div>
@@ -580,12 +579,12 @@ export default function Gallery() {
                         className={`inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors group ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
                       >
                         {idx % 2 === 1 && (
-                          <FaArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1 rotate-180" />
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1 rotate-180" />
                         )}
-                        <FaCamera className="w-5 h-5" />
+                        <Camera className="w-5 h-5" />
                         <span className="font-medium">View Gallery</span>
                         {idx % 2 === 0 && (
-                          <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         )}
                       </button>
                     </div>
@@ -616,7 +615,7 @@ export default function Gallery() {
               <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
                 <div className="bg-white p-6 rounded-sm border border-stone-200">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaUsers className="w-6 h-6 text-amber-700" />
+                    <Users className="w-6 h-6 text-amber-700" />
                   </div>
                   <h4 className="font-serif text-lg text-stone-900 mb-2">
                     Capacity
@@ -625,7 +624,7 @@ export default function Gallery() {
                 </div>
                 <div className="bg-white p-6 rounded-sm border border-stone-200">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaCalendarAlt className="w-6 h-6 text-amber-700" />
+                    <Calendar className="w-6 h-6 text-amber-700" />
                   </div>
                   <h4 className="font-serif text-lg text-stone-900 mb-2">
                     Booking
@@ -636,7 +635,7 @@ export default function Gallery() {
                 </div>
                 <div className="bg-white p-6 rounded-sm border border-stone-200">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaMapMarkerAlt className="w-6 h-6 text-amber-700" />
+                    <MapPin className="w-6 h-6 text-amber-700" />
                   </div>
                   <h4 className="font-serif text-lg text-stone-900 mb-2">
                     Spaces
@@ -647,7 +646,7 @@ export default function Gallery() {
 
               <button className="inline-flex items-center gap-2 px-8 py-4 bg-stone-900 text-white hover:bg-stone-800 transition-colors rounded-sm tracking-wide font-medium">
                 Inquire Now
-                <FaArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </section>
@@ -676,7 +675,7 @@ export default function Gallery() {
               className="absolute top-4 right-4 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors touch-manipulation"
               aria-label="Close"
             >
-              <FaTimes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+              <X className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </button>
 
             {/* Navigation Arrows - Hidden on mobile, shown on desktop */}
@@ -689,7 +688,7 @@ export default function Gallery() {
                 className="pointer-events-auto w-14 h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Previous image"
               >
-                <FaChevronLeft className="w-6 h-6 text-white" />
+                <ChevronLeft className="w-6 h-6 text-white" />
               </button>
 
               <button
@@ -700,7 +699,7 @@ export default function Gallery() {
                 className="pointer-events-auto w-14 h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Next image"
               >
-                <FaChevronRight className="w-6 h-6 text-white" />
+                <ChevronRight className="w-6 h-6 text-white" />
               </button>
             </div>
 
@@ -714,7 +713,7 @@ export default function Gallery() {
                 className="w-12 h-12 bg-white/20 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Previous image"
               >
-                <FaChevronLeft className="w-5 h-5 text-white" />
+                <ChevronLeft className="w-5 h-5 text-white" />
               </button>
               <button
                 onClick={(e) => {
@@ -724,7 +723,7 @@ export default function Gallery() {
                 className="w-12 h-12 bg-white/20 active:bg-white/40 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Next image"
               >
-                <FaChevronRight className="w-5 h-5 text-white" />
+                <ChevronRight className="w-5 h-5 text-white" />
               </button>
             </div>
 
@@ -779,7 +778,7 @@ export default function Gallery() {
                 onClick={closeEventGallery}
                 className="fixed top-4 right-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
               >
-                <FaTimes className="w-6 h-6 text-white" />
+                <X className="w-6 h-6 text-white" />
               </button>
 
               <div className="max-w-6xl mx-auto pt-8">
@@ -796,7 +795,7 @@ export default function Gallery() {
                   </h2>
                   <div className="flex items-center justify-center gap-4 mt-4 text-stone-400">
                     <span className="flex items-center gap-2">
-                      <FaUsers className="w-4 h-4" />
+                      <Users className="w-4 h-4" />
                       {selectedEvent.attendees} attendees
                     </span>
                   </div>
