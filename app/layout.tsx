@@ -42,7 +42,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${newsreader.variable} antialiased`}
       >
-        <AdModal />
+        {/*<AdModal />*/}
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

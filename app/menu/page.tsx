@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Leaf, Flame, Apple } from "lucide-react";
 
 const menuData = {
@@ -12,20 +11,23 @@ const menuData = {
         "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
       price: [1500, 2400],
       tag: "SIGNATURE",
+      image: "/images/bara.jpg",
     },
     {
       name: "Newa Suli Grand Set",
       description:
         "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
-      price: 3500,
+      price: [3500],
       tag: "GRAND",
+      image: "/images/choila.jpg",
     },
     {
       name: "Newa Suli Veg Set",
       description:
         "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
-      price: 750,
+      price: [750],
       tag: "VEGETARIAN",
+      image: "/images/yomari.webp",
     },
   ],
   individualItems: [
@@ -121,7 +123,7 @@ const Tag = ({ type }: { type: string }) => {
 
   return (
     <span
-      className={`text-xs px-2 py-1 rounded-sm uppercase tracking-wider font-medium border ${styles[type as keyof typeof styles] || styles.DEFAULT}`}
+      className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-sm uppercase tracking-wider font-medium border inline-block max-w-fit ${styles[type as keyof typeof styles] || styles.DEFAULT}`}
     >
       {type}
     </span>
@@ -133,38 +135,128 @@ const MenuItem = ({
   description,
   price,
   tag,
+  image,
 }: {
   name: string;
   description?: string;
   price: number | number[];
   tag?: string;
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="group bg-white p-6 rounded-sm border border-stone-200 hover:shadow-lg transition-all duration-300"
-  >
-    <div className="flex justify-between items-start gap-4">
-      <div className="flex-1">
-        <div className="flex items-center gap-3 flex-wrap mb-2">
-          <h3 className="text-lg font-serif text-stone-900 font-medium">
+  image?: string;
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <div className="group bg-white rounded-3xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col shadow-sm">
+        {/* Image Area */}
+        <div className="w-full h-48 sm:h-56 bg-stone-100 relative p-4 flex items-start justify-end overflow-hidden">
+          {image && (
+            <Image
+              src={image}
+              alt={name}
+              fill
+              className="object-cover z-0 group-hover:scale-105 transition-transform duration-500"
+            />
+          )}
+          {tag && <div className="relative z-10"><Tag type={tag} /></div>}
+        </div>
+        
+        <div className="p-6 flex flex-col flex-1">
+          <h3 className="text-xl font-serif text-stone-900 font-medium mb-3">
             {name}
           </h3>
-          {tag && <Tag type={tag} />}
+          
+          {description && (
+            <p className="text-sm text-stone-700 font-light leading-relaxed mb-6 line-clamp-2">
+              {description.split(' | ').join(', ')}
+            </p>
+          )}
+          
+          <div className="mt-auto flex justify-between items-center pt-2">
+            <span className="text-lg font-serif text-stone-900 font-semibold">
+              Rs. {Array.isArray(price) ? price.join(" / ") : price}
+            </span>
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 bg-amber-700 text-white text-xs sm:text-sm font-medium tracking-wider uppercase rounded-sm hover:bg-stone-900 transition-colors duration-300 shadow-md group shrink-0"
+            >
+              Full Details
+            </button>
+          </div>
         </div>
-        {description && (
-          <p className="text-sm text-stone-500 font-light leading-relaxed">
-            {description}
-          </p>
-        )}
       </div>
-      <span className="text-lg font-serif text-amber-700 font-semibold whitespace-nowrap">
-        Rs. {Array.isArray(price) ? price.join(" / ") : price}
-      </span>
-    </div>
-  </motion.div>
-);
+
+      {/* Modal */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl w-full max-w-lg h-[80vh] max-h-[800px] flex flex-col border-2 border-stone-800 overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="p-6 pb-4 flex justify-between items-start border-b-2 border-stone-100 bg-white shrink-0">
+              <div>
+                <h3 className="text-2xl font-serif text-stone-900 font-medium mb-2">{name}</h3>
+                {tag && <Tag type={tag} />}
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="p-2 text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full transition-colors shrink-0"
+              >
+                <span className="sr-only">Close</span>
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Scrollable Content */}
+            <div className="p-6 flex-1 overflow-y-auto">
+              {/* Image Placeholder in Modal */}
+              <div className="w-full h-48 sm:h-64 bg-stone-100 border-2 border-stone-800 rounded-2xl mb-6 relative flex items-center justify-center shrink-0 overflow-hidden">
+                {image ? (
+                  <Image src={image} alt={name} fill className="object-cover" />
+                ) : (
+                  <span className="text-stone-400 font-medium tracking-widest">IMAGE</span>
+                )}
+              </div>
+
+              {description && (
+                <div className="mb-6">
+                  <h4 className="font-medium text-stone-900 mb-3 text-lg">Set Includes:</h4>
+                  <ul className="grid grid-cols-2 gap-3">
+                    {description.split(' | ').map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-stone-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
+                        <span>{item.trim()}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            {/* Footer */}
+            <div className="p-6 pt-4 border-t-2 border-stone-100 bg-white flex items-center justify-between shrink-0">
+              <span className="text-2xl font-serif text-stone-900 font-semibold">
+                Rs. {Array.isArray(price) ? price.join(" / ") : price}
+              </span>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="px-6 py-2 bg-stone-800 text-white rounded-xl font-medium hover:bg-stone-700 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 const SimpleMenuItem = ({
   name,
@@ -176,11 +268,12 @@ const SimpleMenuItem = ({
   tag?: string;
 }) => (
   <div className="flex justify-between items-center py-3 border-b border-stone-200 last:border-0 hover:bg-stone-50 px-2 transition-colors rounded-sm group">
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      {tag && <div className="sm:hidden self-start"><Tag type={tag} /></div>}
       <span className="text-stone-800 font-light">{name}</span>
-      {tag && <Tag type={tag} />}
+      {tag && <div className="hidden sm:block"><Tag type={tag} /></div>}
     </div>
-    <span className="font-serif text-amber-700 font-medium group-hover:text-amber-800 transition-colors">
+    <span className="font-serif text-amber-700 font-medium group-hover:text-amber-800 transition-colors shrink-0 ml-4">
       Rs. {price}
     </span>
   </div>
@@ -207,9 +300,127 @@ const MenuSection = ({
   </div>
 );
 
+const FeaturedSetItem = ({ item }: { item: any }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <div className="relative group flex flex-col items-start h-full">
+        {/* Image */}
+        <div className="relative w-full h-[520px] overflow-hidden bg-white shrink-0">
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+
+        {/* Floating Content Card */}
+        <div className="absolute bottom-0 right-0 bg-white p-6 md:p-6 w-[85%] md:w-[320px] h-[220px] flex flex-col">
+          {item.tag && (
+            <div className="mb-3">
+              <Tag type={item.tag} />
+            </div>
+          )}
+
+          <h3 className="text-2xl font-serif text-amber-700 mb-4 leading-snug">
+            {item.name}
+          </h3>
+
+          <p className="text-stone-600 leading-8 text-sm font-light line-clamp-3">
+            {item.description?.split("|").join(" • ")}
+          </p>
+
+          <div className="mt-auto pt-6 flex items-center justify-between">
+            <span className="text-xl font-serif text-stone-900 font-medium">
+              Rs. {Array.isArray(item.price) ? item.price.join(" / ") : item.price}
+            </span>
+
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="text-sm uppercase tracking-[0.2em] text-amber-700 hover:text-stone-900 transition-colors"
+            >
+              View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl w-full max-w-lg h-[80vh] max-h-[800px] flex flex-col border-2 border-stone-800 overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="p-6 pb-4 flex justify-between items-start border-b-2 border-stone-100 bg-white shrink-0">
+              <div>
+                <h3 className="text-2xl font-serif text-stone-900 font-medium mb-2">{item.name}</h3>
+                {item.tag && <Tag type={item.tag} />}
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="p-2 text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full transition-colors shrink-0"
+              >
+                <span className="sr-only">Close</span>
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Scrollable Content */}
+            <div className="p-6 flex-1 overflow-y-auto">
+              <div className="w-full h-48 sm:h-64 bg-stone-100 rounded-2xl mb-6 relative flex items-center justify-center shrink-0 overflow-hidden">
+                {item.image ? (
+                  <Image src={item.image} alt={item.name} fill className="object-cover" />
+                ) : (
+                  <span className="text-stone-400 font-medium tracking-widest">IMAGE</span>
+                )}
+              </div>
+
+              {item.description && (
+                <div className="mb-6">
+                  <h4 className="font-medium text-stone-900 mb-3 text-lg">Set Includes:</h4>
+                  <ul className="grid grid-cols-2 gap-3">
+                    {item.description.split(' | ').map((descItem: string, i: number) => (
+                      <li key={i} className="flex items-start gap-2 text-stone-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
+                        <span>{descItem.trim()}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            {/* Footer */}
+            <div className="p-6 pt-4 border-t-2 border-stone-100 bg-white flex items-center justify-between shrink-0">
+              <span className="text-2xl font-serif text-stone-900 font-semibold">
+                Rs. {Array.isArray(item.price) ? item.price.join(" / ") : item.price}
+              </span>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="px-6 py-2 bg-stone-800 text-white rounded-xl font-medium hover:bg-stone-700 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 export default function Menu() {
   return (
-    <main className="min-h-screen bg-stone-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -224,54 +435,39 @@ export default function Menu() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-block px-4 py-2 mb-6 text-xs tracking-[0.3em] text-amber-200/90 uppercase border border-amber-200/30 rounded-full backdrop-blur-sm"
-          >
-            Authentic Cuisine
-          </motion.span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+
+          <h1
             className="text-5xl md:text-6xl lg:text-7xl font-serif text-stone-100 mb-6 tracking-tight"
           >
             <span className="text-amber-400 font-light italic">Our</span>
             <span className="block font-bold">Menu</span>
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <div
             className="w-24 h-0.5 bg-amber-500 mx-auto mb-6"
           />
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          <p
             className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto italic font-poppins"
           >
             Experience the authentic taste of Harisiddhi with traditional Newari
             recipes passed down through generations
-          </motion.p>
+          </p>
         </div>
       </section>
 
-      {/* Menu Content */}
-      <div className="max-w-6xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
         {/* Featured Sets */}
-        <MenuSection title="Newa Suli Sets">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {menuData.entrees.map((item, idx) => (
-              <MenuItem key={idx} {...item} />
-            ))}
-          </div>
-        </MenuSection>
+
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 px-4 my-12">
+                {menuData.entrees.map((item, idx) => (
+                    <FeaturedSetItem key={idx} item={item} />
+                ))}
+            </div>
+
+      {/* Menu Content */}
+      <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
+
 
         {/* Two Column Layout */}
         <div className="grid lg:grid-cols-2 gap-12">
@@ -421,20 +617,7 @@ export default function Menu() {
 
         {/* Legend */}
         <div className="mt-16 pt-8 border-t border-stone-200">
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <Leaf className="w-4 h-4 text-emerald-600" />
-              <span className="text-stone-600">Vegetarian</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <Apple className="w-4 h-4 text-orange-500" />
-              <span className="text-stone-600">Contains Fruit</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-sm border border-stone-200">
-              <Flame className="w-4 h-4 text-red-600" />
-              <span className="text-stone-600">Spicy</span>
-            </div>
-          </div>
+
           <p className="mt-8 text-center text-xs text-stone-400">
             All prices are inclusive of taxes • Prices subject to change without
             notice

@@ -22,7 +22,6 @@ const Footer = () => {
   return (
     <footer className="bg-stone-900 font-poppins text-white py-12 lg:px-28 px-12 relative">
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
       </div>
       <div className="flex flex-col gap-4 pb-4">
         <div className="flex gap-4 items-center justify-center mb-2">
@@ -41,7 +40,7 @@ const Footer = () => {
             <li className="py-1">
               {" "}
               <Link href="/about" className="hover-effect-underline">
-                About{" "}
+                AboutSection.tsx{" "}
               </Link>
             </li>
 
