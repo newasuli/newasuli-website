@@ -1,62 +1,12 @@
-"use client";
-import React, { useState, useEffect, useCallback, useRef } from "react";
+
 import Image from "next/image";
-import {
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Camera,
-  Calendar,
-  MapPin,
-  Clock,
-  Users,
-  ArrowRight,
-  Diamond,
-} from "lucide-react";
 import GalleryParallaxColumns from "@/src/components/ui/GalleryParallaxColumns";
 
-const galleryImages = [
-  {
-    src: "/images/newasuli_img_1.jpg",
-    alt: "Traditional Newari Feast",
-    category: "Food",
-  },
-  {
-    src: "/images/newasuli_img_2.jpg",
-    alt: "Restaurant Interior",
-    category: "Ambiance",
-  },
-  {
-    src: "/images/newasuli_img_3.jpg",
-    alt: "Samay Baji Platter",
-    category: "Food",
-  },
-  {
-    src: "/images/newasuli_img_4.jpg",
-    alt: "Newari Cuisine",
-    category: "Food",
-  },
-  {
-    src: "/images/newasuli_img_7.jpg",
-    alt: "Dining Experience",
-    category: "Ambiance",
-  },
-  {
-    src: "/images/newasuli_img_1.jpg",
-    alt: "Yomari Preparation",
-    category: "Kitchen",
-  },
-  {
-    src: "/images/newasuli_img_2.jpg",
-    alt: "Cultural Setting",
-    category: "Ambiance",
-  },
-  { src: "/images/newasuli_img_3.jpg", alt: "Choila Dish", category: "Food" },
-  { src: "/images/newasuli_img_4.jpg", alt: "Bara Special", category: "Food" },
-];
+
+// Metadata handled in layout.tsx
+
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
 
   return (
     <main className="min-h-screen bg-stone-50 overflow-x-hidden">
@@ -67,7 +17,7 @@ export default function Gallery() {
             src="/images/newasuli_img_4.jpg"
             alt="Newari Feast"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900/90" />
@@ -89,11 +39,8 @@ export default function Gallery() {
       </section>
 
       <div className="py-12">
-        <GalleryParallaxColumns
-
-        />
+        <GalleryParallaxColumns />
       </div>
-
 
     </main>
   );

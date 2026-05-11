@@ -8,7 +8,7 @@ import {
 const AboutSection = () => {
     return (
        <>
-           <section className="py-24 lg:py-32 bg-stone-50 md:h-screen flex items-center">
+           <section className="py-8 md:py-16 my-16  bg-stone-50 flex items-center">
                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                    {/* Header Row */}
                    <div className="flex flex-col  mb-16 ">

@@ -1,9 +1,4 @@
-"use client";
 
-import  {
-  useRef,
-  useLayoutEffect,
-} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,7 +11,9 @@ import {
 import AboutSection from "@/components/AboutSection"
 import SignatureDishes from "@/components/SignatureDishes";
 import GalleryEditorial from "@/src/components/ui/GalleryEditorial";
+import GallerySliced from "@/src/components/ui/GallerySliced";
 
+import {metadata} from "@/app/about/layout";
 
 
 const values = [
@@ -51,129 +48,15 @@ const values = [
 ];
 
 
-// ─── HERO ──────────────────────────────────────────────────────────────────────
-
-function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
-  const line1Ref = useRef<HTMLSpanElement>(null);
-  const line2Ref = useRef<HTMLSpanElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-  }, []);
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
-    >
-      <div
-        ref={maskRef}
-        className="absolute inset-0 bg-stone-950 z-30 will-change-transform"
-      />
-
-      <div
-        ref={bgRef}
-        className="absolute inset-0 scale-110 z-0 will-change-transform"
-      >
-        <Image
-          src="https://kimi-web-img.moonshot.cn/img/booking-manager-api-hop-nepal.s3.eu-west-1.amazonaws.com/6a314e7e634bee248b32c9ef7d570b6e7209f304.jpg"
-          alt="Harisiddhi Newa Suli"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </div>
-      <div ref={overlayRef} className="absolute inset-0 bg-stone-950 z-10" />
-
-      {/* Scan lines – desktop only for perf */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none hidden md:block"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)",
-        }}
-      />
-
-      {/* Golden frame – desktop only */}
-      <div className="absolute inset-6 border border-amber-600/20 z-20 pointer-events-none hidden md:block" />
-      <div className="absolute inset-8 border border-amber-600/10 z-20 pointer-events-none hidden md:block" />
-
-      <div className="relative z-20 text-center px-5 max-w-5xl mx-auto pt-24 lg:pt-28">
-        <div ref={badgeRef} className="mb-8 md:mb-10">
-          <span className="inline-flex items-center gap-3 px-5 py-2 border border-amber-600/40 text-amber-400 text-[10px] tracking-[0.4em] uppercase backdrop-blur-sm bg-stone-950/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse inline-block" />
-            Est. 1982 · Harisiddhi, Kathmandu
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse inline-block" />
-          </span>
-        </div>
-
-        <h1 className="font-serif tracking-tight leading-none mb-8 md:mb-10">
-          <span
-            ref={line1Ref}
-            className="block text-5xl md:text-7xl lg:text-[8.5rem] text-amber-400/90 font-light italic"
-          >
-            Our
-          </span>
-          <span
-            ref={line2Ref}
-            className="block text-7xl md:text-9xl lg:text-[11rem] text-stone-100 font-black -mt-3"
-          >
-            Story
-          </span>
-        </h1>
-
-        <div
-          ref={dividerRef}
-          className="w-36 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-8 md:mb-10 origin-center"
-        />
-
-        <p
-          ref={subtitleRef}
-          className="text-base md:text-2xl text-stone-300/80 font-light italic max-w-2xl mx-auto leading-relaxed"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          "Preserving the authentic flavors of Newari culture
-          <br className="hidden md:block" /> through generations of culinary
-          tradition"
-        </p>
-      </div>
-
-      <div
-        ref={scrollRef}
-        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-      >
-        <div className="w-px h-12 md:h-16 bg-gradient-to-b from-transparent to-amber-600 will-change-transform" />
-        <span className="text-stone-500 text-[9px] tracking-[0.5em] uppercase rotate-90 origin-center translate-x-5 mt-1">
-          Scroll
-        </span>
-      </div>
-    </section>
-  );
-}
-
-
 
 // ─── VALUES ────────────────────────────────────────────────────────────────────
 
 function Values() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
 
-  useLayoutEffect(() => {
-	// removed gsap animation
-  }, []);
 
   return (
     <section
-      ref={sectionRef}
+
       className="py-24 lg:py-44 bg-stone-50 relative overflow-hidden"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px]  rounded-[50%] blur-[70px] pointer-events-none" />
@@ -184,7 +67,6 @@ function Values() {
             What We Stand For
           </span>
           <h2
-            ref={headingRef}
             className="text-5xl md:text-6xl lg:text-8xl font-black text-stone-900 overflow-hidden"
             style={{ fontFamily: "serif" }}
           >
@@ -232,28 +114,22 @@ function Values() {
 // ─── CULTURAL ─────────────────────────────────────────────────────────────────
 
 function Cultural() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-	// removed gsap animation
-  }, []);
+
 
   return (
     <section
-      ref={sectionRef}
+
       className="py-24 lg:py-44 bg-stone-50 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-5 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-          <div ref={textRef}>
+          <div >
             <span className="text-amber-700 text-[11px] tracking-[0.6em] uppercase font-bold mb-7 block">
               Cultural Heritage
             </span>
             <h2
-              ref={headingRef}
+
               className="text-4xl md:text-5xl lg:text-7xl font-black text-stone-900 mb-8 leading-[0.95]"
               style={{ fontFamily: "serif" }}
             >
@@ -287,34 +163,39 @@ function Cultural() {
           </div>
 
           <div
-            ref={imageRef}
-            className="relative overflow-hidden flex gap-4 h-full min-h-[500px] items-stretch"
+
+            className="relative aspect-square w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none lg:h-[550px] lg:w-[550px] ml-auto"
           >
-            <div className="overflow-hidden relative flex-1 rounded-sm w-full h-full">
+            {/* Top Left Image (Back) */}
+            <div className="absolute top-0 left-0 w-[65%] h-[65%] overflow-hidden z-10">
               <div className="cultural-img-inner absolute inset-0 will-change-transform">
                 <Image
                   src="/images/bara.jpg"
                   alt="Newari Cultural Feast"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 80vw, 40vw"
                 />
                 <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply pointer-events-none" />
               </div>
             </div>
-            <div className="overflow-hidden relative flex-1 rounded-sm w-full h-full">
+            
+            {/* Bottom Right Image (Front) */}
+            <div className="absolute bottom-0 right-0 w-[65%] h-[65%] overflow-hidden z-20 border-[12px] border-stone-50">
               <div className="cultural-img-inner absolute inset-0 will-change-transform">
                 <Image
                   src="/images/choila.jpg"
                   alt="Newari Cultural Feast 2"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 80vw, 40vw"
                 />
                 <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply pointer-events-none" />
               </div>
             </div>
-            <div className="absolute -bottom-5 -right-5 left-10 top-10 border border-amber-400/25 pointer-events-none -z-10 hidden md:block" />
+            
+            {/* Decorative outline matching the original style */}
+            <div className="absolute -bottom-4 -right-4 w-[65%] h-[65%] border border-amber-400/40 pointer-events-none -z-10 hidden md:block" />
           </div>
         </div>
       </div>
@@ -323,25 +204,53 @@ function Cultural() {
 }
 
 
-// ─── MAIN ──────────────────────────────────────────────────────────────────────
 
 export default function About() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-  }, []);
-
   return (
     <>
      
       <div className="bg-stone-50 overflow-x-hidden">
-        <Hero />
+          <section className="mb-4 relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+              <div className="absolute inset-0 z-0">
+                  <Image
+                      src="/images/image1.jpg"
+                      alt="About Harisiddhi Newa Suli"
+                      fill
+                      className="object-cover"
+                      priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900/90" />
+              </div>
+
+              <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+
+
+                  <h1
+                      className="text-5xl md:text-6xl lg:text-7xl font-serif text-stone-100 mb-6 tracking-tight"
+                  >
+
+                      <span className="block font-bold">About Us</span>
+                  </h1>
+
+                  <div
+                      className="w-24 h-0.5 bg-amber-500 mx-auto mb-6"
+                  />
+
+                  <p
+                      className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto italic font-poppins"
+                  >
+                      Experience the authentic taste of Harisiddhi with traditional Newari
+                      recipes passed down through generations
+                  </p>
+              </div>
+          </section>
+
+          <GallerySliced />
         <AboutSection/>
         <GalleryEditorial />
-
         <Values />
         <SignatureDishes/>
+  
         <Cultural />
 
       </div>

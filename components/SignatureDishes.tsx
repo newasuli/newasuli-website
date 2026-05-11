@@ -46,7 +46,7 @@ const SignatureDishes = () => {
                             
                     src={dish.image}
                     alt={dish.name}
-                    fill
+                            fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />

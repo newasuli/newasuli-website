@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { Phone } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -100,6 +100,26 @@ const Navbar = () => {
                 </Link>
               ))}
             </nav>
+
+            <div className="hidden lg:flex items-center gap-6">
+              <a
+                href="tel:+9779828711989"
+                className="flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
+                title="Call Us"
+              >
+                <Phone className="w-4 h-4" />
+                <span className="text-sm font-medium tracking-widest">+977 982-8711989</span>
+              </a>
+              <a
+                href="https://www.google.com/maps/search/Harisiddhi+Newa+Suli"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-stone-50 hover:bg-amber-700 transition-colors rounded-sm text-sm font-medium tracking-widest"
+              >
+                <MapPin className="w-4 h-4" />
+                Get Directions
+              </a>
+            </div>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
