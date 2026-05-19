@@ -84,17 +84,18 @@ const GalleryParallaxColumns: React.FC<GalleryParallaxColumnsProps> = ({
                             >
                                 <img
                                     src={src}
+                                    alt="Gallery Image"
                                     className="object-cover w-full h-full transition-all duration-700 scale-100 group-hover:scale-105"
-                                    style={{ filter: "brightness(0.88)" }}
-                                    alt=""
                                 />
-                                {/* Bottom label */}
-                                <div
-                                    className="absolute bottom-0 left-0 right-0 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" }}
-                                />
-                                <div className="absolute bottom-4 left-4 text-white text-[11px] font-mono tracking-[0.18em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    {String(colIndex + 1).padStart(2,'0')}.{String(i + 1).padStart(2,'0')}
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                    {/* Bottom label */}
+                                    <div
+                                        className="absolute bottom-0 left-0 right-0 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" }}
+                                    />
+                                    <div className="absolute bottom-4 left-4 text-white text-[11px] font-mono tracking-[0.18em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        {String(colIndex + 1).padStart(2,'0')}.{String(i + 1).padStart(2,'0')}
+                                    </div>
                                 </div>
                             </div>
                         ))}

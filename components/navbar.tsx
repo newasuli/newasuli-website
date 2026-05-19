@@ -46,13 +46,13 @@ const Navbar = () => {
       >
         <div className=" mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <Link href="/" className="relative z-50">
+            <Link href="/" className="relative z-50" aria-label="Go to Harisiddhi Newa Suli Home Page" title="Harisiddhi Newa Suli Home">
               <div className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
                 <div
                   className={`relative transition-all duration-300 ${scrolled ? "w-12 h-12" : "w-14 h-14"}`}
                 >
                   <Image
-                    src="/images/logo.png"
+                    src="/images/logo.webp"
                     alt="Harisiddhi Newa Suli"
                     fill
                     className="object-contain"
@@ -64,7 +64,7 @@ const Navbar = () => {
                   className={`hidden sm:block transition-all duration-300 ${scrolled ? "opacity-100" : "opacity-90"}`}
                 >
                   <Image
-                    src="/images/textlogo.png"
+                    src="/images/textlogo.webp"
                     alt="Newa Suli"
                     width={scrolled ? 100 : 120}
                     height={40}
@@ -80,18 +80,20 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className="relative group py-2"
+                  aria-label={`Navigate to ${link.name} page`}
+                  title={`Navigate to ${link.name}`}
                 >
                   <span
                     className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
                       pathname === link.href
-                        ? "text-amber-400"
+                        ? "text-primary-lighter"
                         : "text-white hover:text-stone-200"
                     }`}
                   >
                     {link.name}
                   </span>
                   <span
-                    className={`absolute -bottom-0.5 left-0 h-0.5 bg-amber-500 transition-all duration-300 ${
+                    className={`absolute -bottom-0.5 left-0 h-0.5 bg-primary-light transition-all duration-300 ${
                       pathname === link.href
                         ? "w-full"
                         : "w-0 group-hover:w-full"
@@ -104,7 +106,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-6">
               <a
                 href="tel:+9779828711989"
-                className="flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
+                className="flex items-center gap-2 text-white hover:text-primary-lighter transition-colors"
                 title="Call Us"
               >
                 <Phone className="w-4 h-4" />
@@ -114,7 +116,7 @@ const Navbar = () => {
                 href="https://www.google.com/maps/search/Harisiddhi+Newa+Suli"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-stone-50 hover:bg-amber-700 transition-colors rounded-sm text-sm font-medium tracking-widest"
+                className="flex items-center gap-2 px-5 py-2.5 bg-primary text-stone-50 hover:bg-primary-dark transition-colors rounded-sm text-sm font-medium tracking-widest"
               >
                 <MapPin className="w-4 h-4" />
                 Get Directions
@@ -156,9 +158,11 @@ const Navbar = () => {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
+                    aria-label={`Navigate to ${link.name} page`}
+                    title={`Navigate to ${link.name}`}
                     className={`block py-4 text-3xl font-serif transition-colors duration-300 ${
                       pathname === link.href
-                        ? "text-amber-500"
+                        ? "text-primary-light"
                         : "text-stone-300 hover:text-white"
                     }`}
                   >
@@ -171,7 +175,7 @@ const Navbar = () => {
             <div className="mt-12 pt-8 border-t border-stone-800">
               <a
                 href="tel:+9779828711989"
-                className="flex items-center gap-3 text-stone-400 hover:text-amber-500 transition-colors"
+                className="flex items-center gap-3 text-stone-400 hover:text-primary-light transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 <span className="text-lg">+977 982-8711989</span>

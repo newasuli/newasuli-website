@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import TextLogo from "@/public/images/textlogo.png";
-import Logo from "@/public/images/logo.png";
+import TextLogo from "@/public/images/textlogo.webp";
+import Logo from "@/public/images/logo.webp";
 import React from "react";
 import Link from "next/link";
 
@@ -63,7 +63,7 @@ const Footer = () => {
           <ul className="flex flex-col items-center text-sm lg:text-based">
             <li className="py-1">Godawari Road, Lalitpur, Nepal</li>
             <li className="my-2">
-              <Link className="hover-effect-underline" href="tel:982-8711989">
+              <Link className="hover-effect-underline" href="tel:+9779828711989" aria-label="Call Harisiddhi Newa Suli" title="Call Us">
                 +977 9828711989
               </Link>
             </li>
@@ -73,6 +73,8 @@ const Footer = () => {
                 href="mailto:info@newasuli.com"
                 className="hover-effect-underline"
                 target="_blank"
+                aria-label="Email Harisiddhi Newa Suli"
+                title="Email Us"
               >
                 info@newasuli.com
               </Link>
@@ -94,6 +96,8 @@ const Footer = () => {
               <Link
                 href="https://www.facebook.com/harisiddhinewasuli"
                 target="_blank"
+                aria-label="Visit Harisiddhi Newa Suli Facebook Page"
+                title="Visit our Facebook"
               >
                 <div className="w-8 h-8">
                   <FacebookIcon />
@@ -104,6 +108,8 @@ const Footer = () => {
               <Link
                 href="https://www.instagram.com/harisiddhi.newa.suli/"
                 target="_blank"
+                aria-label="Visit Harisiddhi Newa Suli Instagram Page"
+                title="Visit our Instagram"
               >
                 <div className="w-8 h-8">
                   <InstagramIcon />

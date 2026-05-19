@@ -11,7 +11,7 @@ const menuData = {
         "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Nyakhunaa (Winter only)",
       price: [1500, 2400],
       tag: "SIGNATURE",
-      image: "/images/bara.jpg",
+        image: "/images/choila.webp",
     },
     {
       name: "Newa Suli Grand Set",
@@ -19,7 +19,8 @@ const menuData = {
         "Baji | Mushyaa | Badam | Aalu Wala | Newa Achaar | Chwey Laa | Kachi Laa | Ja Laa | Dyaku Laa | Malta Meyi Laa | Sukuti | Henya Chwey Laa | Paangra | Swon | Khaa Gwoh | Mey | Nhyepu | Tishya | Shyapu Mhicha | Bhutan | Chow Hee | Sandeko Chyau | Seitan Sukuti | Aalu Tama | Nyakhunaa (Winter only)",
       price: [3500],
       tag: "GRAND",
-      image: "/images/choila.jpg",
+        image: "/images/newa_suli_grand_set.webp",
+
     },
     {
       name: "Newa Suli Veg Set",
@@ -27,7 +28,7 @@ const menuData = {
         "Baji | Mushyaa | Badam | Aalu Wala | Achaar | Sandeko Chyau | Seitan Sukuti | Aalu Tama",
       price: [750],
       tag: "VEGETARIAN",
-      image: "/images/yomari.webp",
+      image: "/images/choila.webp",
     },
   ],
   individualItems: [
@@ -145,6 +146,17 @@ const MenuItem = ({
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   return (
     <>
       <div className="group bg-white rounded-3xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col shadow-sm">
@@ -178,7 +190,7 @@ const MenuItem = ({
             </span>
             <button 
               onClick={() => setIsOpen(true)}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 bg-amber-700 text-white text-xs sm:text-sm font-medium tracking-wider uppercase rounded-sm hover:bg-stone-900 transition-colors duration-300 shadow-md group shrink-0"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 bg-primary-dark text-white text-xs sm:text-sm font-medium tracking-wider uppercase rounded-sm hover:bg-stone-900 transition-colors duration-300 shadow-md group shrink-0"
             >
               Full Details
             </button>
@@ -230,7 +242,7 @@ const MenuItem = ({
                   <ul className="grid grid-cols-2 gap-3">
                     {description.split(' | ').map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-stone-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary-light mt-2 shrink-0" />
                         <span>{item.trim()}</span>
                       </li>
                     ))}
@@ -273,7 +285,7 @@ const SimpleMenuItem = ({
       <span className="text-stone-800 font-light">{name}</span>
       {tag && <div className="hidden sm:block"><Tag type={tag} /></div>}
     </div>
-    <span className="font-serif text-amber-700 font-medium group-hover:text-amber-800 transition-colors shrink-0 ml-4">
+    <span className="font-serif text-primary-dark font-medium group-hover:text-amber-800 transition-colors shrink-0 ml-4">
       Rs. {price}
     </span>
   </div>
@@ -303,6 +315,17 @@ const MenuSection = ({
 const FeaturedSetItem = ({ item }: { item: any }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   return (
     <>
       <div className="relative group flex flex-col items-start h-full">
@@ -324,7 +347,7 @@ const FeaturedSetItem = ({ item }: { item: any }) => {
             </div>
           )}
 
-          <h3 className="text-2xl font-serif text-amber-700 mb-4 leading-snug">
+          <h3 className="text-2xl font-serif text-primary-dark mb-4 leading-snug">
             {item.name}
           </h3>
 
@@ -339,7 +362,7 @@ const FeaturedSetItem = ({ item }: { item: any }) => {
 
             <button 
               onClick={() => setIsOpen(true)}
-              className="text-sm uppercase tracking-[0.2em] text-amber-700 hover:text-stone-900 transition-colors"
+              className="text-sm uppercase tracking-[0.2em] text-primary-dark hover:text-stone-900 transition-colors"
             >
               View
             </button>
@@ -390,7 +413,7 @@ const FeaturedSetItem = ({ item }: { item: any }) => {
                   <ul className="grid grid-cols-2 gap-3">
                     {item.description.split(' | ').map((descItem: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-stone-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary-light mt-2 shrink-0" />
                         <span>{descItem.trim()}</span>
                       </li>
                     ))}
@@ -425,7 +448,7 @@ export default function Menu() {
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/newasuli_img_7.jpg"
+            src="/images/newasuli_img_7.webp"
             alt="Newari Feast"
             fill
             className="object-cover"
@@ -440,12 +463,12 @@ export default function Menu() {
           <h1
             className="text-5xl md:text-6xl lg:text-7xl font-serif text-stone-100 mb-6 tracking-tight"
           >
-            <span className="text-amber-400 font-light italic">Our</span>
+            <span className="text-primary-lighter font-light italic">Our</span>
             <span className="block font-bold">Menu</span>
           </h1>
 
           <div
-            className="w-24 h-0.5 bg-amber-500 mx-auto mb-6"
+            className="w-24 h-0.5 bg-primary-light mx-auto mb-6"
           />
 
           <p
@@ -554,7 +577,7 @@ export default function Menu() {
                   <span className="text-stone-800 font-light">{item.name}</span>
                   {item.tag && <Tag type={item.tag} />}
                 </div>
-                <span className="font-serif text-amber-700 font-medium text-lg">
+                <span className="font-serif text-primary-dark font-medium text-lg">
                   Rs. {item.price}
                 </span>
               </div>
@@ -595,16 +618,16 @@ export default function Menu() {
                       <td className="py-4 px-6 text-stone-800 font-light">
                         {item.name}
                       </td>
-                      <td className="py-4 px-4 text-center font-serif text-amber-700">
+                      <td className="py-4 px-4 text-center font-serif text-primary-dark">
                         Rs. {item.peg}
                       </td>
-                      <td className="py-4 px-4 text-center font-serif text-amber-700">
+                      <td className="py-4 px-4 text-center font-serif text-primary-dark">
                         Rs. {item.qtr}
                       </td>
-                      <td className="py-4 px-4 text-center font-serif text-amber-700">
+                      <td className="py-4 px-4 text-center font-serif text-primary-dark">
                         Rs. {item.half}
                       </td>
-                      <td className="py-4 px-4 text-center font-serif text-amber-700">
+                      <td className="py-4 px-4 text-center font-serif text-primary-dark">
                         Rs. {item.full}
                       </td>
                     </tr>

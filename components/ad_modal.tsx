@@ -18,6 +18,18 @@ const AdModal = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -28,7 +40,7 @@ const AdModal = () => {
           onClick={handleClose}
         />
 
-        <div className="relative w-full max-w-lg z-10">
+        <div className="relative w-full max-w-3xl z-10">
           <button
             onClick={handleClose}
             className="absolute -top-4 -right-4 w-10 h-10 bg-stone-200 hover:bg-stone-300 text-stone-950 rounded-full flex items-center justify-center transition-colors active:scale-95 z-50 shadow-lg"
@@ -39,12 +51,12 @@ const AdModal = () => {
 
           <div className="w-full bg-stone-100 rounded-lg shadow-2xl overflow-hidden">
             <Image
-              src="/images/image1.jpg"
+              src="/images/image1.webp"
               alt="Ad"
-              width={500}
-              height={300}
+              width={800}
+              height={600}
               className="object-cover w-full h-full"
-              sizes="(max-width: 768px) 90vw, 500px"
+              sizes="(max-width: 768px) 90vw, 800px"
             />
           </div>
         </div>

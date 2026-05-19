@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Diamond,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -46,16 +45,20 @@ const GallerySection = () => {
     <section className="py-24 bg-stone-100">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="flex flex-col items-center mb-16">
-            <span className="text-amber-700 text-sm tracking-[0.3em] uppercase mb-4">
+            <span className="text-primary-dark text-sm tracking-[0.3em] uppercase mb-4">
               Visual Journey
             </span>
-            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-2">
               Gallery
             </h2>
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-px bg-stone-300" />
-              <Diamond className="text-amber-600 w-3 h-3" />
-              <div className="w-16 h-px bg-stone-300" />
+            <div className="flex items-center justify-center">
+              <Image 
+                src="/images/title_underline.webp" 
+                alt="Decoration" 
+                width={200} 
+                height={10}
+                className="object-contain"
+              />
             </div>
           </div>
 
@@ -93,7 +96,7 @@ const GallerySection = () => {
                   className="relative overflow-hidden rounded-sm group cursor-pointer h-[400px] sm:h-[450px] lg:h-[500px] w-3/4 sm:w-1/2 lg:w-1/4 shrink-0 snap-start"
                 >
                   <Image
-                    src={`/images/newasuli_img_${num}.jpg`}
+                    src={`/images/newasuli_img_${num}.webp`}
                     alt={`Gallery image ${num}`}
                     fill
                     loading="lazy"

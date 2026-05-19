@@ -179,6 +179,7 @@ export default function UiloraTriloe({
                         alt={item.name}
                         width={44}
                         height={44}
+                        loading="lazy"
                         className="rounded-full flex-shrink-0"
                         style={{
                           backgroundColor: "rgba(255,255,255,0.07)",

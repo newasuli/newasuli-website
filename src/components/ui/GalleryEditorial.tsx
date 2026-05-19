@@ -22,28 +22,28 @@ interface GalleryEditorialProps {
 const GalleryEditorial: React.FC<GalleryEditorialProps> = ({
     items = [
         {
-            image: "/images/newasuli_img_1.jpg",
+            image: "/images/newasuli_img_1.webp",
             chapter: "1982",
             title: "The",
             titleItalic: "Beginning",
             description: "Started as a small family kitchen in Harisiddhi, serving traditional Newari feasts to locals. A hac sed sit sed elit integer at odio diam. Non lorem bibendum nunc scelerisque felis convallis mi commodo ornare.\n\nSagittis suspendisse purus neque sem vestibulum volutpat. Cursus mattis arcu sit felis. Cursus a tortor interdum in consectetur congue vel. Eu fermentum lobortis adipiscing gravida aliquam velit mauris non.",
         },
         {
-            image: "/images/newasuli_img_2.jpg",
+            image: "/images/newasuli_img_2.webp",
             chapter: "1995",
             title: "First",
             titleItalic: "Restaurant",
             description: "Opened our first dedicated restaurant space, preserving authentic recipes passed down through generations. A hac sed sit sed elit integer at odio diam. Non lorem bibendum nunc scelerisque felis convallis mi commodo ornare.\n\nSagittis suspendisse purus neque sem vestibulum volutpat. Cursus mattis arcu sit felis. Cursus a tortor interdum in consectetur congue vel. Eu fermentum lobortis adipiscing gravida aliquam velit mauris non.",
         },
         {
-            image: "/images/newasuli_img_3.jpg",
+            image: "/images/newasuli_img_3.webp",
             chapter: "2010",
             title: "Expanding",
             titleItalic: "Traditions",
             description: "Introduced our famous 'Newa Suli Sets' — complete traditional dining experiences. A hac sed sit sed elit integer at odio diam. Non lorem bibendum nunc scelerisque felis convallis mi commodo ornare.\n\nSagittis suspendisse purus neque sem vestibulum volutpat. Cursus mattis arcu sit felis. Cursus a tortor interdum in consectetur congue vel. Eu fermentum lobortis adipiscing gravida aliquam velit mauris non.",
         },
         {
-            image: "/images/newasuli_img_7.jpg",
+            image: "/images/newasuli_img_7.webp",
             chapter: "Present",
             title: "Legacy",
             titleItalic: "Continues",
@@ -66,7 +66,7 @@ const GalleryEditorial: React.FC<GalleryEditorialProps> = ({
                                 transition={{ duration: 1.5, ease: "easeOut" }}
                                 className="w-full h-full"
                             >
-                                <img src={item.image} className="w-full h-full object-cover" />
+                                <img src={item.image} alt="Gallery Image" className="w-full h-full object-cover" />
                             </motion.div>
                             <div className="absolute top-4 right-4 bottom-4 left-4 border scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" style={{ borderColor: `${textColor}33` }} />
                         </div>

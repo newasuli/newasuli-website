@@ -14,7 +14,7 @@ export default function Gallery() {
       <section className="relative h-[50vh] min-h-[300px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/newasuli_img_4.jpg"
+            src="/images/newasuli_img_3.webp"
             alt="Newari Feast"
             fill
             className="object-cover object-center"
@@ -25,11 +25,11 @@ export default function Gallery() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">
-            <span className="text-amber-400 font-light italic">Gallery &</span>
-            <span className="block font-bold">Events</span>
+    
+            <span className="block font-bold">Gallery</span>
           </h1>
 
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8" />
+          <div className="w-24 h-1 bg-primary mx-auto mb-8" />
 
           <p className="text-lg text-stone-300/90 font-light max-w-2xl mx-auto font-poppins italic">
             A glimpse into our world of authentic Newari cuisine, tradition, and

@@ -13,7 +13,6 @@ interface GallerySlicedProps {
     items?: SlicedItem[];
     backgroundColor?: string;
     descriptionTemplate?: string;
-    buttonText?: string;
 }
 
 const GallerySliced: React.FC<GallerySlicedProps> = ({
@@ -25,10 +24,9 @@ const GallerySliced: React.FC<GallerySlicedProps> = ({
     ],
     backgroundColor = "#ffffff",
     descriptionTemplate = "A Uilora editorial — an immersive dive into the world of {title}.",
-    buttonText = "Explore Collection",
 }) => {
     return (
-        <div className="h-screen flex-col md:flex-row min-h-screen hidden sm:flex" style={{ backgroundColor }}>
+        <div className="h-[90vh] flex-col md:flex-row hidden sm:flex" style={{ backgroundColor }}>
             {items.map((item, i) => (
                 <motion.div
                     key={i}
@@ -39,8 +37,8 @@ const GallerySliced: React.FC<GallerySlicedProps> = ({
                     <div className="absolute inset-0 bg-black">
                         <img
                             src={item.img}
+                            alt={item.title || "Gallery Image"}
                             className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
-                            alt={item.title}
                         />
                     </div>
 
@@ -57,9 +55,7 @@ const GallerySliced: React.FC<GallerySlicedProps> = ({
                         <p className="text-white/70 max-w-sm">
                             {descriptionTemplate.replace('{title}', item.title.toLowerCase())}
                         </p>
-                        <button className="mt-6 flex items-center gap-2 text-white border-b border-white pb-1">
-                            {buttonText} <ArrowRight size={16} />
-                        </button>
+
                     </div>
                 </motion.div>
             ))}

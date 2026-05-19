@@ -28,7 +28,7 @@ export default function Home() {
       <div className="relative h-screen w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/homeimg.png"
+            src="/images/homeimg.webp"
             alt="Harisiddhi Newa Suli"
             fill
             className="object-cover object-center"
@@ -40,7 +40,7 @@ export default function Home() {
 
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-stone-100 mb-6 tracking-tight">
-            <span className="block text-amber-400 font-light italic">
+            <span className="block text-primary-lighter font-light italic">
               Harisiddhi
             </span>
             <span className="block font-bold">Newa Suli</span>
@@ -54,7 +54,9 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link
               href="/menu"
-              className="group relative px-8 py-3 bg-amber-600 text-stone-50 overflow-hidden rounded-sm transition-all hover:bg-amber-700"
+              className="group relative px-8 py-3 bg-primary text-stone-50 overflow-hidden rounded-sm transition-all hover:bg-primary-dark"
+              aria-label="Explore Harisiddhi Newa Suli Menu"
+              title="Explore Menu"
             >
               <span className="relative z-10 flex items-center gap-2 font-medium tracking-wide">
                 Explore Menu

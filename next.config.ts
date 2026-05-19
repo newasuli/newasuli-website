@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   images: {
     domains: ["kimi-web-img.moonshot.cn"],
+    formats: ["image/avif", "image/webp"],
   },
     experimental: {
     turbopackFileSystemCacheForDev: true,

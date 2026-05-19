@@ -5,15 +5,15 @@ const FEATURED_DISHES = [
   {
     name: "Samay Baji",
     desc: "Traditional ceremonial platter",
-    image: "/images/samay_baji.png",
+    image: "/images/samay_baji.webp",
   },
-  { name: "Choila", desc: "Spiced grilled meat", image: "/images/choila.jpg" },
+  { name: "Choila", desc: "Spiced grilled meat", image: "/images/choila.webp" },
   {
     name: "Yomari",
     desc: "Sweet rice dumplings",
     image: "/images/yomari.webp",
   },
-  { name: "Bara", desc: "Lentil pancake", image: "/images/bara.jpg" },
+  { name: "Bara", desc: "Lentil pancake", image: "/images/bara.webp" },
 ];
 
 const SignatureDishes = () => {
@@ -25,13 +25,13 @@ const SignatureDishes = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div>
-              <span className="text-amber-500 text-sm tracking-[0.3em] uppercase">
+              <span className="text-primary-light text-sm tracking-[0.3em] uppercase">
                 Culinary Excellence
               </span>
               <h2 className="text-4xl lg:text-5xl font-serif mt-4 mb-6">
                 Signature Dishes
               </h2>
-              <div className="w-24 h-1 bg-amber-600 mx-auto" />
+              <div className="w-24 h-1 bg-primary mx-auto" />
             </div>
           </div>
 
@@ -52,7 +52,7 @@ const SignatureDishes = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-xl font-serif text-amber-400 mb-2">
+                  <h3 className="text-xl font-serif text-primary-lighter mb-2">
                     {dish.name}
                   </h3>
                   <p className="text-stone-300 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
@@ -66,7 +66,7 @@ const SignatureDishes = () => {
           <div className="text-center mt-12">
             <Link
               href="/menu"
-              className="inline-block px-8 py-3 border border-amber-600 text-amber-500 hover:bg-amber-600 hover:text-stone-900 transition-all duration-300 rounded-sm tracking-wide"
+              className="inline-block px-8 py-3 border border-primary text-primary-light hover:bg-primary hover:text-stone-900 transition-all duration-300 rounded-sm tracking-wide"
             >
               View Full Menu
             </Link>

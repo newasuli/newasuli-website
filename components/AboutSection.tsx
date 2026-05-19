@@ -23,7 +23,7 @@ const AboutSection = () => {
                        </div>
                        <div className="lg:w-3/4">
                            <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 leading-tight font-bold "  style={{ fontFamily: "serif" }}>
-                               Crafting Memorable Dining Experiences at <span className="text-amber-600 italic ">Harisiddhi Newa Suli</span>
+                               Crafting Memorable Dining Experiences at <span className="text-primary italic ">Harisiddhi Newa Suli</span>
                            </h2>
                        </div>
                    </div>
@@ -32,22 +32,24 @@ const AboutSection = () => {
                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                        {/* Left: Images */}
                        <div className="relative pt-4 group">
-                           <div className="relative aspect-[4/5] w-4/5 rounded-lg overflow-hidden shadow-xl">
+                           <div className="relative aspect-[4/5] w-full lg:w-4/5 rounded-lg overflow-hidden shadow-xl">
                                <Image
-                                   src="/images/image1.jpg"
+                                   src="/images/image1.webp"
                                    alt="Our Chefs and Kitchen"
                                    fill
+                                   priority
                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                    sizes="(max-width: 768px) 80vw, 40vw"
                                />
                                <div className="absolute inset-0 bg-stone-900/10 transition-opacity duration-700 group-hover:opacity-0"></div>
                            </div>
-                           <div className="absolute top-1/2 right-0 transform -translate-y-1/3 w-[55%] aspect-square border-8 border-stone-50 overflow-hidden shadow-2xl rounded-lg">
+                           <div className="absolute top-1/2 right-0 transform -translate-y-1/3 w-[55%] aspect-square border-8 border-stone-50 overflow-hidden shadow-2xl rounded-lg hidden lg:block">
                                <Image
-                                   src="/images/choila.jpg"
+                                   src="/images/choila.webp"
                                    alt="Signature Dish"
                                    fill
-                                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                   priority
+                                   className="object-cover transition-transform duration-1000 group-hover:scale-110 "
                                    sizes="(max-width: 768px) 50vw, 25vw"
                                />
                            </div>
@@ -78,7 +80,7 @@ const AboutSection = () => {
 
                                <Link
                                    href="/about"
-                                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-700 text-white text-sm font-medium tracking-wider uppercase rounded-sm hover:bg-stone-900 transition-colors duration-300 shadow-md group"
+                                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary-dark text-white text-sm font-medium tracking-wider uppercase rounded-sm hover:bg-stone-900 transition-colors duration-300 shadow-md group"
                                >
                                    Discover More
                                    <ArrowRightCircle className="w-4 h-4 transition-transform group-hover:translate-x-1" />

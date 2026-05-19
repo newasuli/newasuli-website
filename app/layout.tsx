@@ -12,9 +12,8 @@ const poppins = Poppins({
   style: ["normal", "italic"],
   display: "swap",
   fallback: ["system-ui", "sans-serif"],
-  preload: true,
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const newsreader = Newsreader({
@@ -22,9 +21,8 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
   display: "swap",
   fallback: ["serif"],
-  preload: true,
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -55,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Harisiddhi Newa Suli",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logo.webp",
         width: 800,
         height: 600,
         alt: "Harisiddhi Newa Suli Logo",
@@ -68,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Harisiddhi Newa Suli | Best Authentic Newari Restaurant",
     description: "Experience the best authentic Newari cuisine at Harisiddhi Newa Suli.",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.webp"],
   },
 };
 

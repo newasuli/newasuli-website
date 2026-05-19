@@ -24,6 +24,10 @@
   --color-dark: var(--dark);
   --color-red: var(--red);
   --color-cream: var(--cream);
+  --color-primary: #d97706; /* amber-600 */
+  --color-primary-dark: #b45309; /* amber-700 */
+  --color-primary-light: #f59e0b; /* amber-500 */
+  --color-primary-lighter: #fbbf24; /* amber-400 */
   --font-poppins: var(--font-poppins);
   --font-newsreader: var(--font-newsreader);
 }

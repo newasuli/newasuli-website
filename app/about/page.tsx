@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,12 +8,15 @@ import {
   Building2,
 } from "lucide-react";
 import AboutSection from "@/components/AboutSection"
-import SignatureDishes from "@/components/SignatureDishes";
 import GalleryEditorial from "@/src/components/ui/GalleryEditorial";
 import GallerySliced from "@/src/components/ui/GallerySliced";
+import TeamMembers from "@/components/TeamMembers";
 
-import {metadata} from "@/app/about/layout";
-
+export const metadata = {
+  title: "About Us | Harisiddhi Newa Suli",
+  description: "Learn about the history and tradition of Harisiddhi Newa Suli, the best restaurant for authentic Newari food and dining experiences.",
+  keywords: ["About Harisiddhi Newa Suli", "history of Newari food", "authentic food experience"],
+};
 
 const values = [
   {
@@ -63,7 +65,7 @@ function Values() {
 
       <div className="max-w-7xl mx-auto px-5 lg:px-12">
         <div className="text-center mb-16 md:mb-24">
-          <span className="text-amber-700 text-[11px] tracking-[0.6em] uppercase font-bold block mb-5">
+          <span className="text-primary-dark text-[11px] tracking-[0.6em] uppercase font-bold block mb-5">
             What We Stand For
           </span>
           <h2
@@ -125,7 +127,7 @@ function Cultural() {
       <div className="max-w-7xl mx-auto px-5 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div >
-            <span className="text-amber-700 text-[11px] tracking-[0.6em] uppercase font-bold mb-7 block">
+            <span className="text-primary-dark text-[11px] tracking-[0.6em] uppercase font-bold mb-7 block">
               Cultural Heritage
             </span>
             <h2
@@ -135,11 +137,11 @@ function Cultural() {
             >
               More Than
               <br />
-              Just <span className="italic text-amber-700">Food</span>
+              Just <span className="italic text-primary-dark">Food</span>
             </h2>
 
             <div className="space-y-6 text-stone-600 text-base md:text-lg font-light leading-[1.8]">
-              <p className="border-l-4 border-amber-500 pl-5 text-stone-700">
+              <p className="border-l-4 border-primary-light pl-5 text-stone-700">
                 Newari cuisine is deeply intertwined with the cultural and
                 religious life of the Newar people. Every dish has its place in
                 festivals, ceremonies, and daily life.
@@ -154,8 +156,10 @@ function Cultural() {
 
             <Link
               href="/menu"
-              className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-amber-700 text-white hover:bg-stone-900 transition-all duration-300 text-sm font-bold tracking-[0.2em] uppercase shadow-lg group active:scale-95"
+              className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-primary-dark text-white hover:bg-stone-900 transition-all duration-300 text-sm font-bold tracking-[0.2em] uppercase shadow-lg group active:scale-95"
               data-cursor="Menu"
+              aria-label="Explore the Full Menu of Harisiddhi Newa Suli"
+              title="View full Menu and Newari Specials"
             >
               Explore Our Menu
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-300" />
@@ -170,7 +174,7 @@ function Cultural() {
             <div className="absolute top-0 left-0 w-[65%] h-[65%] overflow-hidden z-10">
               <div className="cultural-img-inner absolute inset-0 will-change-transform">
                 <Image
-                  src="/images/bara.jpg"
+                  src="/images/bara.webp"
                   alt="Newari Cultural Feast"
                   fill
                   className="object-cover"
@@ -184,7 +188,7 @@ function Cultural() {
             <div className="absolute bottom-0 right-0 w-[65%] h-[65%] overflow-hidden z-20 border-[12px] border-stone-50">
               <div className="cultural-img-inner absolute inset-0 will-change-transform">
                 <Image
-                  src="/images/choila.jpg"
+                  src="/images/choila.webp"
                   alt="Newari Cultural Feast 2"
                   fill
                   className="object-cover"
@@ -195,7 +199,7 @@ function Cultural() {
             </div>
             
             {/* Decorative outline matching the original style */}
-            <div className="absolute -bottom-4 -right-4 w-[65%] h-[65%] border border-amber-400/40 pointer-events-none -z-10 hidden md:block" />
+            <div className="absolute -bottom-4 -right-4 w-[65%] h-[65%] border border-primary-lighter/40 pointer-events-none -z-10 hidden md:block" />
           </div>
         </div>
       </div>
@@ -213,7 +217,7 @@ export default function About() {
           <section className="mb-4 relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
                   <Image
-                      src="/images/image1.jpg"
+                      src="/images/image1.webp"
                       alt="About Harisiddhi Newa Suli"
                       fill
                       className="object-cover"
@@ -233,7 +237,7 @@ export default function About() {
                   </h1>
 
                   <div
-                      className="w-24 h-0.5 bg-amber-500 mx-auto mb-6"
+                      className="w-24 h-0.5 bg-primary-light mx-auto mb-6"
                   />
 
                   <p
@@ -245,11 +249,22 @@ export default function About() {
               </div>
           </section>
 
-          <GallerySliced />
+         
         <AboutSection/>
-        <GalleryEditorial />
+          <GalleryEditorial />
+
+
+
+
         <Values />
-        <SignatureDishes/>
+          <div className="hidden lg:block">
+              <GallerySliced />
+          </div>
+          <div className="block lg:hidden">
+              <TeamMembers />
+          </div>
+
+       
   
         <Cultural />
 
