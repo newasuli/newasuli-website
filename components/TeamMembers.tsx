@@ -73,7 +73,7 @@ const TeamMembers = () => {
                                 <h3 className="text-xl font-serif text-primary-lighter mb-2">
                                     {dish.name}
                                 </h3>
-                                <p className="text-stone-300 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <p className="text-stone-300 text-sm font-light  transition-opacity duration-300 delay-100">
                                     {dish.desc}
                                 </p>
                             </div>

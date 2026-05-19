@@ -24,7 +24,7 @@ const SignatureDishes = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center mb-16">
-            <span className="text-primary-dark text-sm tracking-[0.3em] uppercase mb-4">
+            <span className="text-primary-lighter text-sm tracking-[0.3em] uppercase mb-4">
               Culinary Excellence
             </span>
             <h2 className="text-4xl lg:text-5xl font-serif  mb-2 text-center">

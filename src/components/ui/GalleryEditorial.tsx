@@ -75,7 +75,7 @@ const GalleryEditorial: React.FC<GalleryEditorialProps> = ({
                             <motion.span
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                className="text-xs font-bold tracking-[0.2em]"
+                                className="text-md font-bold tracking-[0.2em]"
                                 style={{ color: accentColor }}
                             >
                                 {item.chapter || `CHAPTER 0${i + 1}`}
@@ -93,8 +93,8 @@ const GalleryEditorial: React.FC<GalleryEditorialProps> = ({
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="font-light leading-relaxed max-w-sm whitespace-pre-wrap text-justify"
-                                style={{ color: `${textColor}66` }}
+                                className="font-light leading-relaxed text-md max-w-sm whitespace-pre-wrap text-justify"
+
                             >
                                 {item.description || "Architecture acts as a bridge between nature and humanity. A stillness that speaks volumes in the chaotic modern world."}
                             </motion.p>
