@@ -64,16 +64,25 @@ function Values() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px]  rounded-[50%] blur-[70px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-5 lg:px-12">
-        <div className="text-center mb-16 md:mb-24">
-          <span className="text-primary-dark text-[11px] tracking-[0.6em] uppercase font-bold block mb-5">
+        <div className="flex flex-col items-center mb-16 md:mb-24">
+          <span className="text-primary-dark text-sm tracking-[0.3em] uppercase mb-4">
             What We Stand For
           </span>
           <h2
-            className="text-5xl md:text-6xl lg:text-8xl font-black text-stone-900 overflow-hidden"
+            className="text-4xl lg:text-5xl font-serif text-stone-900 mb-2 text-center"
             style={{ fontFamily: "serif" }}
           >
             Our Values
           </h2>
+          <div className="flex items-center justify-center">
+            <Image
+              src="/images/title_underline.webp"
+              alt="Decoration"
+              width={200}
+              height={10}
+              className="object-contain"
+            />
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

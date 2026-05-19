@@ -9,7 +9,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
-  { name: "Gallery & Events", href: "/gallery" },
+  { name: "Gallery", href: "/gallery" },
 ];
 
 const Navbar = () => {

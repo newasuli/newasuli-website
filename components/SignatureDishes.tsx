@@ -23,15 +23,21 @@ const SignatureDishes = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <div>
-              <span className="text-primary-light text-sm tracking-[0.3em] uppercase">
-                Culinary Excellence
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-serif mt-4 mb-6">
-                Signature Dishes
-              </h2>
-              <div className="w-24 h-1 bg-primary mx-auto" />
+          <div className="flex flex-col items-center mb-16">
+            <span className="text-primary-dark text-sm tracking-[0.3em] uppercase mb-4">
+              Culinary Excellence
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-serif  mb-2 text-center">
+              Signature Dishes
+            </h2>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/images/title_underline.webp"
+                alt="Decoration"
+                width={200}
+                height={10}
+                className="object-contain brightness-0 invert"
+              />
             </div>
           </div>
 
