@@ -1,9 +1,9 @@
-"use client";
 import Image from "next/image";
 import TextLogo from "@/public/images/textlogo.webp";
 import Logo from "@/public/images/logo.webp";
 import React from "react";
 import Link from "next/link";
+import CurrentYear from "@/components/CurrentYear";
 
 // Social Media Icons as SVG
 const FacebookIcon = () => (
@@ -123,8 +123,7 @@ const Footer = () => {
       <div className="border-[0.5px] relative z-10"></div>
       <div className="flex justify-center flex-wrap md:gap-10 relative z-10">
         <p className="pt-4 text-xs">
-          &copy;2024 HARISIDDHI NEWA SULI. ALL RIGHTS
-          RESERVED
+          &copy;<CurrentYear /> HARISIDDHI NEWA SULI. ALL RIGHTS RESERVED
         </p>
         {/* <p className="pt-4 text-xs">Developed by Sapat, Suraj, Sagar.</p> */}
       </div>
