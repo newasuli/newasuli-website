@@ -57,7 +57,7 @@ const AboutSection = () => {
 
                        {/* Right: Text Content */}
                        <div className="flex flex-col gap-8 lg:pt-8  p-8 lg:p-12  relative">
-                           <div className="absolute -top-6 -left-6 text-stone-100 opacity-50 font-serif text-9xl">"</div>
+                           <div className="absolute -top-6 -left-6 text-stone-100 opacity-50 font-serif text-9xl">&quot;</div>
 
                            <div className="relative z-10">
                                <h3 className="text-2xl font-serif text-stone-900 mb-4 flex items-center gap-3 ">

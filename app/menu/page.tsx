@@ -312,7 +312,7 @@ const MenuSection = ({
   </div>
 );
 
-const FeaturedSetItem = ({ item }: { item: any }) => {
+const FeaturedSetItem = ({ item }: { item: (typeof menuData.entrees)[number] }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {

@@ -156,7 +156,7 @@ function Cultural() {
                 festivals, ceremonies, and daily life.
               </p>
               <p>
-                At Harisiddhi Newa Suli, we don't just serve meals — we offer an
+                At Harisiddhi Newa Suli, we don&apos;t just serve meals — we offer an
                 authentic cultural experience. Our restaurant is a living museum
                 of Newari gastronomy, where every bite tells a centuries-old
                 story.
