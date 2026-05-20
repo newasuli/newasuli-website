@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import WhatsAppFloating from "@/components/WhatsAppFloating";
 
 const AdModal = dynamic(() => import("@/components/ad_modal"));
 
@@ -84,6 +85,7 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <WhatsAppFloating />
       </body>
     </html>
   );
