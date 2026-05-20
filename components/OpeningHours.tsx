@@ -48,7 +48,7 @@ export default function OpeningHours() {
           </div>
 
           {/* Image */}
-          <div className="relative h-[400px] lg:h-[600px] w-full rounded-sm overflow-hidden hidden md:block">
+          <div className="relative h-[400px] lg:h-[600px] w-full rounded-sm overflow-hidden ">
             <video 
               src="/videos/opening_hour.mp4" 
               autoPlay
