@@ -1,8 +1,8 @@
 "use client";
 
 const CurrentYear = () => {
-  return <>{new Date().getFullYear()}</>;
+  const year = new Date().getFullYear();
+  return <>{year ?? "\u00A0"}</>;
 };
 
 export default CurrentYear;
-
