@@ -1,7 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const CurrentYear = () => {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setYear(new Date().getFullYear());
+  }, []);
+
   return <>{year ?? "\u00A0"}</>;
 };
 

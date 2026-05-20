@@ -8,6 +8,33 @@ import OpeningHours from "@/components/OpeningHours";
 import Map from "@/components/Map";
 import GallerySection from "@/components/GallerySection";
 import type { Metadata } from "next";
+import Script from "next/script";
+import {
+  contactInfo,
+  defaultImage,
+  siteName,
+  siteUrl,
+  socialLinks,
+} from "@/lib/seo";
+
+const restaurantStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: siteName,
+  url: siteUrl,
+  image: [new URL(defaultImage, siteUrl).toString()],
+  telephone: contactInfo.phone,
+  email: contactInfo.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: contactInfo.addressLine,
+    addressLocality: contactInfo.city,
+    addressCountry: contactInfo.country,
+  },
+  servesCuisine: ["Newari", "Nepali"],
+  priceRange: "$$",
+  sameAs: [socialLinks.facebook, socialLinks.instagram],
+};
 
 export const metadata: Metadata = {
   title: "Harisiddhi Newa Suli | Home",
@@ -19,11 +46,34 @@ export const metadata: Metadata = {
     "delicious meals",
     "Harisiddhi Newa Suli top restaurant",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Harisiddhi Newa Suli | Home",
+    description:
+      "Welcome to Harisiddhi Newa Suli. Explore the best authentic Newari food, our top restaurant experience, menu, and more.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Harisiddhi Newa Suli | Home",
+    description:
+      "Welcome to Harisiddhi Newa Suli. Explore the best authentic Newari food, our top restaurant experience, menu, and more.",
+  },
 };
 
 export default function Home() {
   return (
     <main className="bg-stone-50 overflow-x-hidden">
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(restaurantStructuredData),
+        }}
+      />
       {/* Hero Section - Cinematic Parallax */}
       <div className="relative h-screen w-full overflow-hidden">
         <div className="absolute inset-0 z-0">

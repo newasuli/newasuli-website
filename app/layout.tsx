@@ -5,6 +5,13 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import WhatsAppFloating from "@/components/WhatsAppFloating";
+import {
+  defaultDescription,
+  defaultImage,
+  defaultTitle,
+  siteName,
+  siteUrl,
+} from "@/lib/seo";
 
 const AdModal = dynamic(() => import("@/components/ad_modal"));
 
@@ -27,10 +34,12 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://newasuli.com"),
-  title: "Harisiddhi Newa Suli | Best Authentic Newari Restaurant in town",
-  description:
-    "Experience the best authentic Newari cuisine at Harisiddhi Newa Suli. We serve delicious traditional food, offering the best dining experience in town.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s | Harisiddhi Newa Suli",
+  },
+  description: defaultDescription,
   keywords: [
     "Newari restaurant",
     "best food",
@@ -46,18 +55,31 @@ export const metadata: Metadata = {
     "food in Harisiddhi",
     "Lalitpur restaurants",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Harisiddhi Newa Suli | Best Authentic Newari Restaurant in town",
-    description:
-      "Experience the best authentic Newari cuisine at Harisiddhi Newa Suli.",
-    url: "https://newasuli.com",
-    siteName: "Harisiddhi Newa Suli",
+    title: defaultTitle,
+    description: defaultDescription,
+    url: siteUrl,
+    siteName,
     images: [
       {
-        url: "/images/logo.webp",
+        url: defaultImage,
         width: 800,
         height: 600,
-        alt: "Harisiddhi Newa Suli Logo",
+        alt: `${siteName} Logo`,
       },
     ],
     locale: "en_US",
@@ -65,9 +87,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Harisiddhi Newa Suli | Best Authentic Newari Restaurant",
-    description: "Experience the best authentic Newari cuisine at Harisiddhi Newa Suli.",
-    images: ["/images/logo.webp"],
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [defaultImage],
   },
 };
 
