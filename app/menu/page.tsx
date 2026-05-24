@@ -167,6 +167,7 @@ const MenuItem = ({
               src={image}
               alt={name}
               fill
+              priority
               className="object-cover z-0 group-hover:scale-105 transition-transform duration-500"
             />
           )}
@@ -335,6 +336,7 @@ const FeaturedSetItem = ({ item }: { item: (typeof menuData.entrees)[number] }) 
             src={item.image}
             alt={item.name}
             fill
+            priority
             className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
         </div>

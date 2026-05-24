@@ -80,6 +80,7 @@ function Values() {
               alt="Decoration"
               width={200}
               height={10}
+              priority
               className="object-contain"
             />
           </div>
